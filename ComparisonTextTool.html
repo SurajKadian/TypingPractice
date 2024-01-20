@@ -1,0 +1,42 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js"></script>
+<script>
+function compareText() {
+  var text2 = document.getElementById('text1').value;
+  var text1 = document.getElementById('text2').value;
+  var dmp = new diff_match_patch();
+  var diff = dmp.diff_main(text1, text2);
+  dmp.diff_cleanupSemantic(diff);
+  var html = dmp.diff_prettyHtml(diff);
+  document.getElementById('result').innerHTML = html;
+}  </script>
+</head>
+
+<body>
+<h1 style="text-align: center;">Text Comparison Tool</h1>
+<p style="text-align: center;">Enter two texts to compare and click the button.</p>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); grid-gap: 5px; margin-top: 20px; grid-template-areas: 'input1 input2' 'output output'; position: relative;">
+  
+<textarea id="text1" rows="10" cols="80" style="grid-area: input1; width: 80%; height: 80%; margin: 10%;" placeholder="Enter Original Text here"></textarea>
+<textarea id="text2" rows="10" cols="80" style="grid-area: input2; width: 80%; height: 80%; margin: 10%;" placeholder="Enter Comparison Text here"></textarea>
+
+<button onclick="compareText()" style="position: absolute; bottom: 35%; left: 45%; transform: translateX(-50%); z-index: 1; width: 15%; height: 5%; margin: 5%;">Compare</button>
+
+<style>     #result {  
+  border: 1px solid black; 
+  margin: 10px;
+  background-color: lightgray;
+  width: 90%; 
+  height: 150%; 
+  overflow: auto;
+  font-family: monospace; 
+  font-size: 14px; 
+  position: absolute; bottom: -73%; 
+  align-self: center;
+  justify-self: center;                         }    </style>
+
+<div id="result" style="grid-area: output;"></div>
+</div>
+</body>
+</html>
