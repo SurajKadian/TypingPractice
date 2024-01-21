@@ -1,42 +1,161 @@
+<!DOCTYPE html>
 <html>
 <head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js"></script>
-<script>
-function compareText() {
-  var text2 = document.getElementById('text1').value;
-  var text1 = document.getElementById('text2').value;
-  var dmp = new diff_match_patch();
-  var diff = dmp.diff_main(text1, text2);
-  dmp.diff_cleanupSemantic(diff);
-  var html = dmp.diff_prettyHtml(diff);
-  document.getElementById('result').innerHTML = html;
-}  </script>
+    <style>
+        ins {
+            background-color: #a6f3a6;
+            text-decoration: none;
+        }
+
+        del {
+            background-color: #f8cbcb;
+            text-decoration: none;
+        }
+
+        body {
+            display: flex;
+            align-items: center-top;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px; 
+            width: 100vw; 
+            padding: 0 20px;
+        }
+
+        div {
+            margin: 20px 0;
+        }
+
+      textarea#text1 {
+          width: calc(50% - 16px); 
+          height: 200px; 
+          box-sizing: border-box; 
+          border: 1px solid #999;
+          padding: 8px;
+          margin-right: 10px; 
+      }
+      textarea#text2 {
+          width: calc(50% - 18px); 
+          height: 200px; /* 2:1 ratio */
+          box-sizing: border-box;
+          border: 1px solid #999;
+          padding: 8px;
+          margin-left: 10px; 
+      }
+
+        #output {
+            width: calc(100% - 10px); 
+            max-width: 100%; 
+            height: 300px;
+            border: 1px solid #999999;
+            background-color: #f0f0f0;
+            padding: 8px;
+            margin-top: 20px;
+            font-family: monospace;
+            overflow: auto;
+            box-sizing: border-box; 
+        }
+
+        button {
+            width: calc(25%); 
+            height: 40px;
+            border: none;
+            border-radius: 16px;
+            margin: 0 8px; 
+        }
+
+        #reset-btn {
+            width: calc(18% - 24px); 
+            height: 40px;
+            border: none;
+            border-radius: 16px;
+            margin: 0 5px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.0.0/diff.min.js"></script>
 </head>
-
 <body>
-<h1 style="text-align: center;">Text Comparison Tool</h1>
-<p style="text-align: center;">Enter two texts to compare and click the button.</p>
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); grid-gap: 5px; margin-top: 20px; grid-template-areas: 'input1 input2' 'output output'; position: relative;">
-  
-<textarea id="text1" rows="10" cols="80" style="grid-area: input1; width: 80%; height: 80%; margin: 10%;" placeholder="Enter Original Text here"></textarea>
-<textarea id="text2" rows="10" cols="80" style="grid-area: input2; width: 80%; height: 80%; margin: 10%;" placeholder="Enter Comparison Text here"></textarea>
+    <div class="container">
+        <h1>Text Difference Checker</h1>
+        <p>Enter two texts in the boxes below and click the buttons to see the differences.</p>
+        <div>
+            <textarea id="text1" placeholder="Enter original text here"></textarea>
+            <textarea id="text2" placeholder="Enter comparison text here"></textarea>
+        </div>
+        <div>
+            <button id="diff-line">Differentiate by line</button>
+            <button id="diff-word">Differentiate by word</button>
+            <button id="diff-char">Differentiate by character</button>
+            <button id="reset-btn">Reset</button>
+        </div>
+        <div id="output"></div>
+    </div>
+  <script>
+        // Get the elements from the document
+        var text1 = document.getElementById("text1");
+        var text2 = document.getElementById("text2");
+        var diffLine = document.getElementById("diff-line");
+        var diffWord = document.getElementById("diff-word");
+        var diffChar = document.getElementById("diff-char");
+        var output = document.getElementById("output");
 
-<button onclick="compareText()" style="position: absolute; bottom: 35%; left: 45%; transform: translateX(-50%); z-index: 1; width: 15%; height: 5%; margin: 5%;">Compare</button>
+        // Click event listener to the line diff button
+        diffLine.addEventListener("click", function() {
+            // Get the values of the textareas
+            var text1Value = text1.value;
+            var text2Value = text2.value;
 
-<style>     #result {  
-  border: 1px solid black; 
-  margin: 10px;
-  background-color: lightgray;
-  width: 90%; 
-  height: 150%; 
-  overflow: auto;
-  font-family: monospace; 
-  font-size: 14px; 
-  position: absolute; bottom: -73%; 
-  align-self: center;
-  justify-self: center;                         }    </style>
+            // Use the diffLines method to compare the texts line by line
+            var changes = Diff.diffLines(text1Value, text2Value);
 
-<div id="result" style="grid-area: output;"></div>
-</div>
+            // Use the convertChangesToXML method to generate the output in XML format
+            var diffOutput = Diff.convertChangesToXML(changes);
+
+            // Display the output in the output div
+            output.innerHTML = diffOutput;
+        });
+
+        // Click event listener to the word diff button
+        diffWord.addEventListener("click", function() {
+            // Get the values of the textareas
+            var text1Value = text1.value;
+            var text2Value = text2.value;
+
+            // Use the diffWords method to compare the texts word by word
+            var changes = Diff.diffWords(text1Value, text2Value);
+
+            // Use the convertChangesToXML method to generate the output in XML format
+            var diffOutput = Diff.convertChangesToXML(changes);
+
+            // Display the output in the output div
+            output.innerHTML = diffOutput;
+        });
+
+        // Click event listener to the character diff button
+        diffChar.addEventListener("click", function() {
+            // Get the values of the textareas
+            var text1Value = text1.value;
+            var text2Value = text2.value;
+
+            // Use the diffChars method to compare the texts character by character
+            var changes = Diff.diffChars(text1Value, text2Value);
+
+            // Use the convertChangesToXML method to generate the output in XML format
+            var diffOutput = Diff.convertChangesToXML(changes);
+
+            // Display the output in the output div
+            output.innerHTML = diffOutput;
+        });
+        // Click event listener to the reset button
+        document.getElementById('reset-btn').addEventListener('click', function() {
+        document.getElementById('text1').value = ''; // Clear the content of text1
+        document.getElementById('text2').value = ''; // Clear the content of text2
+        document.getElementById('output').innerHTML = ''; // Clear the content of the output area
+});
+  </script>
 </body>
 </html>
