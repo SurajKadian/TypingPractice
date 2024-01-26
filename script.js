@@ -71,6 +71,7 @@ function resetLayout() {
   text2.style.marginLeft = '0';
   infoLine.style.display = 'none';
   resultsHeading.style.display = 'none';
+  heading.style.display = 'block';
 }
 
 function rearrangeLayout() {
