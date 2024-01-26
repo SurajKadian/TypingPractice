@@ -69,7 +69,6 @@ function resetLayout() {
   text2.style.width = '100%';
   text2.style.height = '20rem';
   text2.style.marginLeft = '0';
-  heading.style.display = 'none';
   infoLine.style.display = 'none';
   resultsHeading.style.display = 'none';
 }
