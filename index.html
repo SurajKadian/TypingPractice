@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>@surajkadian</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>SurajKadian</title>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Text Compare</h1>
-        <!--<p>Enter two texts in the boxes below and click the buttons to see the differences.</p>-->
-        <div>
-            <textarea id="text1" placeholder="Enter original text here"></textarea>
-            <textarea id="text2" placeholder="Enter comparison text here" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
-        </div>
-        <div class="buttons">
-            <button id="diff-line">Differentiate by line</button>
-            <button id="diff-word">Differentiate by word</button>
-            <button id="diff-char">Differentiate by character</button>
-            <button id="reset-btn">Reset</button>
-        </div>
-        <div id="output" style="display: none;"></div>
+  <div class="container">
+    <h1>Text Comparison Program</h1>
+    <p>Enter two texts in the boxes below and click the buttons to see the comparision</p>
+    <div>
+      <textarea id="text1" placeholder="Enter original text here" spellcheck="false" autocorrect="off"
+        autocapitalize="off"></textarea>
+      <textarea id="text2" placeholder="Enter comparison text here" spellcheck="false" autocorrect="off"
+        autocapitalize="off"></textarea>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js"></script>
-    <script src="script.js"></script>
+    <div class="buttons">
+      <button id="diff-line">Compare lines</button>
+      <button id="diff-word">Compare words</button>
+      <button id="diff-char">Compare characters</button>
+      <button id="reset-btn">Reset</button>
+    </div>
+    <div id="output" style="display: none;"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.0.0/diff.min.js"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
