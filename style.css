@@ -25,6 +25,9 @@ textarea {
     height: 250px;
     box-sizing: border-box;
     border: 1px solid #999;
+    border-radiis: 6px;
+    font-family: arial;
+    font-size: 1rem;
     padding: 8px;
     margin: 10px 0;
 }
@@ -38,10 +41,12 @@ textarea {
     max-width: 100%;
     height: 300px;
     border: 1px solid #999999;
+    border-radiis: 6px;
     background-color: #f0f0f0;
     padding: 8px;
     margin-top: 20px;
     font-family: monospace;
+    font-size: 1.5rem;
     overflow: auto;
     box-sizing: border-box;
 }
