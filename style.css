@@ -1,9 +1,11 @@
 ins {
   background-color: #a6f3a6;
+  border-radius: 6px;
 }
 
 del {
   background-color: #f8cbcb;
+  border-radius: 6px;
 }
 
 body {
@@ -22,6 +24,16 @@ body {
   padding: 0.5em;
 }
 
+.text-container {
+  position: relative;
+} 
+
+.text-container label {
+  display: block;
+  margin-bottom: 5px; 
+  text-align: left; 
+}
+
 textarea {
   width: 100%;
   height: 20rem;
@@ -33,6 +45,14 @@ textarea {
   font-size: 1em;
   font-family: arial;
   margin: 10px 0;
+}
+
+#text-selector {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 2px; 
+  border-radius: 6px;
 }
 
 .buttons {
