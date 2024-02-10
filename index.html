@@ -10,13 +10,31 @@
 
 <body>
   <div class="container">
-    <h1>Text Comparison Program</h1>
-    <p>Enter two texts in the boxes below and click the buttons to see the comparision</p>
-    <div>
-      <textarea id="text1" placeholder="Enter original text here"></textarea>
-      <textarea id="text2" placeholder="Enter comparison text here" spellcheck="false" autocorrect="off"
-        autocapitalize="off"></textarea>
+    <h1>Typing Practice</h1>
+    <p>Enter two texts in the boxes below and click the buttons to see the comparison</p>
+    <div class="text-container">
+      <label for="text1">‏‏‎ ‎</label>
+      <textarea id="text1" placeholder="Enter original text here" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
+      <select id="text-selector">
+        <option value="">Choose a text...</option>
+        <option value="Lorem">Lorem</option>
+        <option value="2">Lorem2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+      </select>
     </div>
+    <textarea id="text2" placeholder="Enter comparison text here" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
     <div class="buttons">
       <button id="diff-line">Compare lines</button>
       <button id="diff-word">Compare words</button>
@@ -28,5 +46,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.0.0/diff.min.js"></script>
   <script src="script.js"></script>
 </body>
-
+  
 </html>
