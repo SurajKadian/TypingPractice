@@ -91,32 +91,6 @@ function rearrangeLayout() {
   document.querySelector('.text-container label').style.display = 'none';
 }
 
-function applySimpleFont() {
-  text1.style.fontWeight = 'normal';
-  text2.style.fontWeight = 'normal';
-}
-
-function applyBoldFont() {
-  text1.style.fontWeight = 'bold';
-  text2.style.fontWeight = 'bold';
-}
-
-text1.addEventListener('focus', function() {
-  applyBoldFont();
-});
-
-text2.addEventListener('focus', function() {
-  applyBoldFont();
-});
-
-text1.addEventListener('blur', function() {
-  applySimpleFont();
-});
-
-text2.addEventListener('blur', function() {
-  applySimpleFont();
-});
-
 var providedTexts = {
   '1': 'text/CGL58.txt',
   '2': 'text/CGL61.txt',
