@@ -5,7 +5,7 @@ var diffWord = document.getElementById("diff-word");
 var diffChar = document.getElementById("diff-char");
 var output = document.getElementById("output");
 var heading = document.querySelector('.container h1');
-var infoLine = document.querySelector('.container p');
+//var infoLine = document.querySelector('.container p');
 var resultsHeading = document.createElement('h2');
 
 resultsHeading.textContent = 'Results';
@@ -64,12 +64,12 @@ document.getElementById('reset-btn').addEventListener('click', function() {
 function resetLayout() {
   output.style.display = 'none';
   text1.style.width = '100%';
-  text1.style.height = '20rem';
+  text1.style.height = '18rem';
   text1.style.marginRight = '0';
   text2.style.width = '100%';
-  text2.style.height = '20rem';
+  text2.style.height = '18rem';
   text2.style.marginLeft = '0';
-  infoLine.style.display = 'none';
+  //infoLine.style.display = 'none';
   heading.style.display = 'block';
   resultsHeading.style.display = 'none';
   document.getElementById('text-selector').style.display = 'block';
@@ -80,7 +80,7 @@ function rearrangeLayout() {
   resultsHeading.style.display = 'block';
   output.style.display = 'block';
   heading.style.display = 'none';
-  infoLine.style.display = 'none';
+  //infoLine.style.display = 'none';
   text1.style.width = 'calc(100%)';
   text1.style.height = '14rem';
   //text1.style.marginRight = '2rem';
