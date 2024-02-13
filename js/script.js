@@ -5,20 +5,73 @@ var diffWord = document.getElementById("diff-word");
 var diffChar = document.getElementById("diff-char");
 var output = document.getElementById("output");
 var heading = document.querySelector('.container h1');
-//var infoLine = document.querySelector('.container p');
 var resultsHeading = document.createElement('h2');
+//var infoLine = document.querySelector('.container p');
+var container = document.querySelector('.container');
+var calButton = document.getElementById('cal');
+var calculationContainer = document.getElementById('calculation-container');
+var calculationOutput = document.getElementById('calculation-output');
+var fullMistakesInput = document.getElementById('full-mistakes');
+var halfMistakesInput = document.getElementById('half-mistakes');
+var totalWordsInput = document.getElementById('total-words');
+var calculateButton = document.getElementById('calculate-errors');
 
 resultsHeading.textContent = 'Results';
 resultsHeading.style.display = 'none';
-var container = document.querySelector('.container');
 container.insertBefore(resultsHeading, container.firstChild);
-
 
 function countWords(text) {
   var words = text.split(/\s+/);
   return words.filter(function(word) {
     return word.length > 0;
   }).length;
+}
+
+function resetLayout() {
+  output.style.display = 'none';
+  text1.style.width = '100%';
+  text1.style.height = '18rem';
+  text1.style.marginRight = '0';
+  text2.style.width = '100%';
+  text2.style.height = '18rem';
+  text2.style.marginLeft = '0';
+  //infoLine.style.display = 'none';
+  heading.style.display = 'block';
+  resultsHeading.style.display = 'none';
+  document.getElementById('calculator').style.display = 'none';
+  document.getElementById('text-selector').style.display = 'block';
+  document.querySelector('.text-container label').style.display = 'block';
+}
+
+function rearrangeLayout() {
+  resultsHeading.style.display = 'block';
+  output.style.display = 'block';
+  heading.style.display = 'none';
+  //infoLine.style.display = 'none';
+  text1.style.width = 'calc(100%)';
+  text1.style.height = '14rem';
+  //text1.style.marginRight = '2rem';
+  text2.style.width = 'calc(100%)';
+  text2.style.height = '14rem';
+  //text2.style.marginLeft = '2rem';
+  document.getElementById('calculator').style.display = 'block';
+  calButton.style.display = 'block';
+  document.getElementById('calculation-container').style.display = 'none';
+  document.getElementById('text-selector').style.display = 'none';
+  document.querySelector('.text-container label').style.display = 'none';
+}
+
+function loadTextFile(fileUrl) {
+  return fetch(fileUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+    });
 }
 
 diffLine.addEventListener("click", function() {
@@ -50,7 +103,6 @@ diffChar.addEventListener("click", function() {
   var changes = Diff.diffChars(text1Value, text2Value);
   var diffOutput = Diff.convertChangesToXML(changes);
   var charCount = text1Value.length;
-
   output.innerHTML = `<b>Total Characters </b>: ${charCount}<br><br>${diffOutput}`;
 });
 
@@ -60,36 +112,6 @@ document.getElementById('reset-btn').addEventListener('click', function() {
   document.getElementById('output').innerHTML = '';
   resetLayout();
 });
-
-function resetLayout() {
-  output.style.display = 'none';
-  text1.style.width = '100%';
-  text1.style.height = '18rem';
-  text1.style.marginRight = '0';
-  text2.style.width = '100%';
-  text2.style.height = '18rem';
-  text2.style.marginLeft = '0';
-  //infoLine.style.display = 'none';
-  heading.style.display = 'block';
-  resultsHeading.style.display = 'none';
-  document.getElementById('text-selector').style.display = 'block';
-  document.querySelector('.text-container label').style.display = 'block';
-}
-
-function rearrangeLayout() {
-  resultsHeading.style.display = 'block';
-  output.style.display = 'block';
-  heading.style.display = 'none';
-  //infoLine.style.display = 'none';
-  text1.style.width = 'calc(100%)';
-  text1.style.height = '14rem';
-  //text1.style.marginRight = '2rem';
-  text2.style.width = 'calc(100%)';
-  text2.style.height = '14rem';
-  //text2.style.marginLeft = '2rem';
-  document.getElementById('text-selector').style.display = 'none';
-  document.querySelector('.text-container label').style.display = 'none';
-}
 
 var providedTexts = {
   '1': 'text/CGL58.txt',
@@ -136,22 +158,27 @@ document.getElementById('text-selector').addEventListener('change', function() {
   }
 });
 
-function loadTextFile(fileUrl) {
-  return fetch(fileUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.text();
-    })
-    .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-    });
-}
-
 for (var fileName in providedTexts) {
   var option = document.createElement('option');
   option.value = fileName; // Use file name as value
   option.textContent = providedTexts[fileName].split('/').pop().split('.').slice(0, -1).join('.'); 
   document.getElementById('text-selector').appendChild(option);
 }
+
+calButton.addEventListener('click', function() {
+  calculationContainer.style.display = 'block';
+  calButton.style.display = 'none';
+});
+
+calculateButton.addEventListener('click', function() {
+  var fullMistakes = parseInt(fullMistakesInput.value);
+  var halfMistakes = parseInt(halfMistakesInput.value);
+  var totalWords = parseInt(totalWordsInput.value);
+
+  if (!isNaN(fullMistakes) && !isNaN(halfMistakes) && !isNaN(totalWords)) {
+    var errorsPercentage = ((fullMistakes + (halfMistakes / 2)) / totalWords) * 100;
+    calculationOutput.textContent = 'Errors Percentage: ' + errorsPercentage.toFixed(2) + '%';
+  } else {
+    calculationOutput.textContent = 'Invalid input!';
+  }
+});
