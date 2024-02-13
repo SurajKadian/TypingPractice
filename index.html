@@ -15,12 +15,12 @@
     <!-- <p>Enter two texts in the boxes below and click the buttons to see the comparison</p> -->
     <div class="text-container">
       <label for="text1">‏‏‎ ‎</label>
-      <textarea id="text1" placeholder="Paste original text here" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
+      <textarea id="text1" placeholder="Paste original text here or choose from the drop down menu..." spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
       <select id="text-selector">
         <option value="">Choose a text...</option>
       </select>
     </div>
-    <textarea id="text2" placeholder="Start typing here" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
+    <textarea id="text2" placeholder="Start typing here..." spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
     <div class="buttons">
       <button id="diff-line">Compare lines</button>
       <button id="diff-word">Compare words</button>
@@ -28,9 +28,22 @@
       <button id="reset-btn">Reset</button>
     </div>
     <div id="output" style="display: none;"></div>
+    <div id="calculator" style="display: none;">
+      <button id="cal">Calculate Errors</button>
+      <div id="calculation-container" style="display: none;">
+        <label for="full-mistakes">Full Mistakes:</label>
+        <input type="number" id="full-mistakes" min="0" max="999">
+        <label for="half-mistakes">Half Mistakes:</label>
+        <input type="number" id="half-mistakes" min="0" max="999">
+        <label for="total-words">Total Words:</label>
+        <input type="number" id="total-words" min="0" max="999">
+        <button id="calculate-errors">Calculate Errors</button>
+        <div id="calculation-output"></div>
+      </div>
+    </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.0.0/diff.min.js"></script>
-  <script src="script.js"></script>
+  <script src="js/jsdiff-5.2.0"></script>
+  <script src="js/script.js"></script>
 </body>
   
 </html>
