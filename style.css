@@ -62,12 +62,17 @@ textarea {
   padding: 10px;
   margin: 10px 0;
   font-family: 'Google Sans', Arial, sans-serif;
-  font-size: 16px; 
-  resize: vertical; /* Allowing vertical resizing */
+  font-size: 16px;
+  resize: vertical;
   background-color: #fff; 
 }
 
-/* Button styles */
+textarea:focus {
+  outline: none;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(1px); 
+}
+
 .buttons {
   margin-top: 10px;
   display: flex;
@@ -84,14 +89,21 @@ textarea {
   font-size: 16px;
   text-rendering: optimizeLegibility;
   border-radius: 20px;
-  background-color: #3F72AF;
+  background: linear-gradient(to bottom, #3F72AF, #1E5799);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .buttons button:hover {
-  background-color: #112D4E;
+  background-color: #112D4E; 
+  transform: translateY(-2px); 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+}
+
+.buttons button:active {
+  transform: translateY(1px); 
 }
 
 #output {
