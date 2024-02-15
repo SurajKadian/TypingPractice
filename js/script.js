@@ -140,7 +140,8 @@ var providedTexts = {
   '24': 'text/CHSL62.txt',
   '25': 'text/CHSL7PY.txt',
   '26': 'text/CHSL8PY.txt',
-  '27': 'text/CapitalisationPractice.txt'
+  '27': 'text/CapitalisationPractice.txt',
+  '28': 'text/SpellingPractice.txt'
 };
 
 document.getElementById('text-selector').addEventListener('change', function() {
