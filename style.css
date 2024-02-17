@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans&display=swap');
 
 ins {
-  background-color: #B9F6CA;
+  background-color: #FFCDD2;
   border-radius: 4px;
-  color: #1B5E20;
+  color: #B71C1C;
   text-decoration: none;
 }
 
 del {
-  background-color: #FFCDD2;
+  background-color: #B9F6CA;
   border-radius: 4px;
-  color: #B71C1C;
+  color: #1B5E20;
   text-decoration: none;
 }
 
