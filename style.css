@@ -11,7 +11,7 @@ ins {
   background-color: #FFCDD2;
   border-radius: 4px;
   color: #B71C1C;
-  /*text-decoration: none;*/
+  text-decoration: line-through;
 }
 
 * {
