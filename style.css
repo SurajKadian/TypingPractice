@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans&display=swap');
 
-ins {
+del {
   background-color: #B9F6CA;
   border-radius: 4px;
   color: #1B5E20;
   text-decoration: none;
 }
 
-del {
+ins {
   background-color: #FFCDD2;
   border-radius: 4px;
   color: #B71C1C;
