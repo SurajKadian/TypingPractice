@@ -78,7 +78,7 @@ diffLine.addEventListener("click", function() {
   rearrangeLayout();
   var text1Value = text1.value;
   var text2Value = text2.value;
-  var changes = Diff.diffLines(text1Value, text2Value);
+  var changes = Diff.diffLines(text2Value, text1Value);
   var diffOutput = Diff.convertChangesToXML(changes);
   var lineCount = text1Value.split(/\r\n|\r|\n/).length;
 
@@ -89,7 +89,7 @@ diffWord.addEventListener("click", function() {
   rearrangeLayout();
   var text1Value = text1.value;
   var text2Value = text2.value;
-  var changes = Diff.diffWords(text1Value, text2Value);
+  var changes = Diff.diffWords(text2Value, text1Value);
   var diffOutput = Diff.convertChangesToXML(changes);
   var countWordsResult = countWords(text1Value);
 
@@ -100,7 +100,7 @@ diffChar.addEventListener("click", function() {
   rearrangeLayout();
   var text1Value = text1.value;
   var text2Value = text2.value;
-  var changes = Diff.diffChars(text1Value, text2Value);
+  var changes = Diff.diffChars(text2Value, text1Value);
   var diffOutput = Diff.convertChangesToXML(changes);
   var charCount = text1Value.length;
   output.innerHTML = `<b>Total Characters </b>: ${charCount}<br><br>${diffOutput}`;
