@@ -64,22 +64,6 @@ function countWords(text) {
   }).length;
 }
 
-function resetLayout() {
-  output.style.display = 'none';
-  text1.style.width = '100%';
-  text1.style.height = '18rem';
-  text1.style.marginRight = '0';
-  text2.style.width = '100%';
-  text2.style.height = '18rem';
-  text2.style.marginLeft = '0';
-  //infoLine.style.display = 'none';
-  heading.style.display = 'block';
-  resultsHeading.style.display = 'none';
-  document.getElementById('calculator').style.display = 'none';
-  document.getElementById('text-selector').style.display = 'block';
-  document.querySelector('.text-container label').style.display = 'block';
-}
-
 function rearrangeLayout() {
   resultsHeading.style.display = 'block';
   output.style.display = 'block';
@@ -146,10 +130,7 @@ diffChar.addEventListener("click", function() {
 });
 
 document.getElementById('reset-btn').addEventListener('click', function() {
-  document.getElementById('text1').value = '';
-  document.getElementById('text2').value = '';
-  document.getElementById('output').innerHTML = '';
-  resetLayout();
+  location.reload();
 });
 
 var providedTexts = {
