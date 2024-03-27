@@ -20,6 +20,18 @@ resultsHeading.textContent = 'Results';
 resultsHeading.style.display = 'none';
 container.insertBefore(resultsHeading, container.firstChild);
 
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+fullscreenBtn.addEventListener('click', () => {
+    if (document.fullscreenElement) {
+        // Exit full-screen mode
+        document.exitFullscreen();
+    } else {
+        // Enter full-screen mode
+        document.documentElement.requestFullscreen();
+    }
+}); 
+
 function countWords(text) {
   var words = text.split(/\s+/);
   return words.filter(function(word) {
