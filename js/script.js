@@ -57,6 +57,11 @@ function updateTimer() {
     }
 }
 
+function parseTimeToSeconds(timeString) {
+    const [minutes, seconds] = timeString.split(':').map(parseFloat);
+    return minutes * 60 + seconds;
+}
+
 function countWords(text) {
   var words = text.split(/\s+/);
   return words.filter(function(word) {
@@ -177,6 +182,31 @@ document.getElementById('text-selector').addEventListener('change', function() {
   } else {
     document.getElementById('text1').value = ''; 
   }
+});
+
+document.getElementById('timer').addEventListener('click', function() {
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+});
+
+document.getElementById('apply-btn').addEventListener('click', function() {
+    const newTime = document.getElementById('timer-input').value;
+    const timerDisplay = document.getElementById('timer');
+    timerDisplay.textContent = `Time: ${newTime}`;
+    timeLeft = parseTimeToSeconds(newTime); // Update timeLeft with new value
+    const modal = document.getElementById('myModal');
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('myModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+document.querySelector('.text-container label').addEventListener('click', function(event) {
+    event.preventDefault();
 });
 
 for (var fileName in providedTexts) {
