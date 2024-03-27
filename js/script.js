@@ -15,6 +15,10 @@ var fullMistakesInput = document.getElementById('full-mistakes');
 var halfMistakesInput = document.getElementById('half-mistakes');
 var totalWordsInput = document.getElementById('total-words');
 var calculateButton = document.getElementById('calculate-errors');
+let timerInterval;
+let timeLeft = 600;
+let timerStarted = false;
+
 
 resultsHeading.textContent = 'Results';
 resultsHeading.style.display = 'none';
@@ -31,6 +35,27 @@ fullscreenBtn.addEventListener('click', () => {
         document.documentElement.requestFullscreen();
     }
 }); 
+
+function startTimer() {
+    if (!timerStarted) {
+        timerInterval = setInterval(updateTimer, 1000);
+        timerStarted = true;
+    }
+}
+
+function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    const timerDisplay = document.getElementById('timer');
+    timerDisplay.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+    if (timeLeft === 0) {
+        clearInterval(timerInterval);
+        alert("Time's up!");
+    } else {
+        timeLeft--;
+    }
+}
 
 function countWords(text) {
   var words = text.split(/\s+/);
@@ -85,6 +110,8 @@ function loadTextFile(fileUrl) {
       console.error('There was a problem with the fetch operation:', error);
     });
 }
+
+document.getElementById('text2').addEventListener('input', startTimer);
 
 diffLine.addEventListener("click", function() {
   rearrangeLayout();
