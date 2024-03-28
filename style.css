@@ -145,19 +145,26 @@ textarea:focus {
   font-family: 'Google Sans', sans-serif;
 }
 
+.label {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.r-label {
+  display: flex;
+  margin: 0;
+}
+
 #text-selector {
-  position: absolute;
-  top: 0;
-  right: 0;
-  /*margin-top: 2px;*/
   border-radius: 6px;
 }
 
 .text-container label {
   display: block;
-  /*margin-bottom: 2px;*/
   text-align: left;
-}
+  font-size: 18px;
 
 #calculator {
   margin-top: 20px;
