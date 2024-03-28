@@ -182,6 +182,7 @@ document.getElementById('file-input').addEventListener('change', function(event)
     };
     reader.readAsText(file);
   }
+});
 
 document.getElementById('text-selector').addEventListener('change', function() {
   var selectedFileName = this.value;
