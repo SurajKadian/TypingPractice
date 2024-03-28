@@ -29,10 +29,8 @@ container.insertBefore(resultsHeading, container.firstChild);
 
 fullscreenBtn.addEventListener('click', () => {
     if (document.fullscreenElement) {
-        // Exit full-screen mode
         document.exitFullscreen();
     } else {
-        // Enter full-screen mode
         document.documentElement.requestFullscreen();
     }
 }); 
@@ -48,7 +46,7 @@ function updateTimer() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
     const timerDisplay = document.getElementById('timer');
-    timerDisplay.textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    timerDisplay.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
     if (timeLeft === 0) {
         clearInterval(timerInterval);
@@ -170,6 +168,21 @@ ttBtn.addEventListener('click', () => {
     document.getElementById('text2').style.fontSize = currentFontSize + 'px';
 });
 
+document.getElementById('file-upload-icon').addEventListener('click', function() {
+  document.getElementById('file-input').click();
+});
+
+document.getElementById('file-input').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const text = e.target.result;
+      document.getElementById('text1').value = text;
+    };
+    reader.readAsText(file);
+  }
+
 document.getElementById('text-selector').addEventListener('change', function() {
   var selectedFileName = this.value;
   var selectedFileUrl = providedTexts[selectedFileName];
@@ -194,7 +207,7 @@ document.getElementById('apply-btn').addEventListener('click', function() {
     const newTime = document.getElementById('timer-input').value;
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = `Time: ${newTime}`;
-    timeLeft = parseTimeToSeconds(newTime); // Update timeLeft with new value
+    timeLeft = parseTimeToSeconds(newTime);
     const modal = document.getElementById('myModal');
     modal.style.display = 'none';
 });
