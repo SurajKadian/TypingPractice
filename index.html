@@ -21,15 +21,22 @@
   <img src="svg/tt.svg" alt="Font Size Icon" width="20" height="20">
       </button>
     </div>
-    <div class="text-container">
-      <label for="text1">‏‏‎
-        <span class="timer" id="timer">Time: 10:00</span>
-      ‎</label>
-      <textarea id="text1" placeholder="Paste original text here or choose from the drop down menu..." spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
-      <select id="text-selector">
-        <option value="">Choose a text...</option>
-      </select>
+<div class="text-container">
+      <label for="text1" title="Click to update timer" class="text-label">
+        <div class="label">
+          <span class="timer" id="timer">Time: 10:00</span>
+          <div class="r-label">
+            <img src="svg/up.svg" alt="Upload Icon" id="file-upload-icon">
+            <select id="text-selector">
+              <option value="">Choose a text...</option>
+            </select>
+          </div>
+        </div>
+      </label>
+      <input type="file" id="file-input" accept=".txt" style="display:none;">
+      <textarea id="text1" placeholder="Enter original text here"></textarea>
     </div>
+    
     <div id="myModal" class="modal">
     <div class="modal-content">
       <h4>Enter new time here</h4>
