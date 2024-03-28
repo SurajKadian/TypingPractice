@@ -18,13 +18,15 @@ var calculateButton = document.getElementById('calculate-errors');
 let timerInterval;
 let timeLeft = 600;
 let timerStarted = false;
+let currentFontSize = 16;
+const ttBtn = document.getElementById('tt-btn');
+const fullscreenBtn = document.getElementById('fullscreen-btn');
 
 
 resultsHeading.textContent = 'Results';
 resultsHeading.style.display = 'none';
 container.insertBefore(resultsHeading, container.firstChild);
 
-const fullscreenBtn = document.getElementById('fullscreen-btn');
 
 fullscreenBtn.addEventListener('click', () => {
     if (document.fullscreenElement) {
@@ -168,6 +170,17 @@ var providedTexts = {
   '27': 'text/CapitalisationPractice.txt',
   '28': 'text/SpellingPractice.txt'
 };
+
+ttBtn.addEventListener('click', () => {
+    currentFontSize += 2;
+
+    if (currentFontSize > 22) {
+        currentFontSize = 16;
+    }
+
+    document.getElementById('text1').style.fontSize = currentFontSize + 'px';
+    document.getElementById('text2').style.fontSize = currentFontSize + 'px';
+});
 
 document.getElementById('text-selector').addEventListener('change', function() {
   var selectedFileName = this.value;
