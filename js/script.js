@@ -1,6 +1,5 @@
 var text1 = document.getElementById("text1");
 var text2 = document.getElementById("text2");
-var diffLine = document.getElementById("diff-line");
 var diffWord = document.getElementById("diff-word");
 var diffChar = document.getElementById("diff-char");
 var output = document.getElementById("output");
@@ -103,17 +102,6 @@ function loadTextFile(fileUrl) {
 }
 
 document.getElementById('text2').addEventListener('input', startTimer);
-
-diffLine.addEventListener("click", function() {
-  rearrangeLayout();
-  var text1Value = text1.value;
-  var text2Value = text2.value;
-  var changes = Diff.diffLines(text2Value, text1Value);
-  var diffOutput = Diff.convertChangesToXML(changes);
-  var lineCount = text1Value.split(/\r\n|\r|\n/).length;
-
-  output.innerHTML = `<b>Total Lines </b>: ${lineCount}<br><br>${diffOutput}`;
-});
 
 diffWord.addEventListener("click", function() {
   rearrangeLayout();
