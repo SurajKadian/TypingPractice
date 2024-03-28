@@ -40,7 +40,7 @@ body {
 
 .container {
   max-width: 800rem;
-  width: 90%;
+  width: calc(100% - 1.4rem);
   text-align: center;
 }
 
@@ -55,8 +55,8 @@ h1 {
 
 #fullscreen-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     background-color: transparent;
     border: none;
     padding: 0;
@@ -64,8 +64,8 @@ h1 {
 
 #tt-btn {
     position: absolute;
-    top: 10px;
-    right: 40px;
+    top: 12px;
+    right: 42px;
     background-color: transparent;
     border: none;
     padding: 0;
@@ -76,7 +76,6 @@ textarea {
   height: 18rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   padding: 10px;
   margin: 10px 0;
   font-family: 'Google Sans', Arial, sans-serif;
@@ -122,6 +121,10 @@ textarea:focus {
 
 .buttons button:active {
   transform: translateY(1px); 
+}
+
+.buttons button#reset-btn {
+  max-width: 24%;
 }
 
 #output {
@@ -239,7 +242,7 @@ textarea:focus {
   background-color: #112D4E; 
   transform: translateY(-2px); 
     flex: 1;
-  height: 30px;
+  height: 32px;
   width:56px;
   margin: 0 5px;
   border: none;
