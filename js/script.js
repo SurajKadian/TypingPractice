@@ -68,6 +68,20 @@ function countWords(text) {
   }).length;
 }
 
+function calculateAccuracy(originalText, typedText) {
+  let correctCount = 0;
+  const minLength = Math.min(originalText.length, typedText.length);
+  
+  for (let i = 0; i < minLength; i++) {
+    if (originalText[i] === typedText[i]) {
+      correctCount++;
+    }
+  }
+
+  const accuracy = (correctCount / originalText.length) * 100;
+  return accuracy.toFixed(2);
+}
+
 function rearrangeLayout() {
   resultsHeading.style.display = 'block';
   output.style.display = 'block';
@@ -113,10 +127,12 @@ diffWord.addEventListener("click", function() {
   var countWords2 = countWords(text2Value);
   var totalWordsOriginal = Math.round(charCount1 / 5);
   var totalWordsTyped = Math.round(charCount2 / 5);
+  var accuracy = calculateAccuracy(text1Value, text2Value);
 
-  output.innerHTML = `<b>Total Words</b>: ${countWords1}[~${totalWordsOriginal}]; `;
-  output.innerHTML += `<b>Words typed</b>: ${countWords2}[~${totalWordsTyped}]; <br><br>`;
-  output.innerHTML += `${diffOutput}`;
+  result.innerHTML = `<b>Total Words</b>: ${countWords1}[~${totalWordsOriginal}]; `;
+  result.innerHTML += `<b>Words typed</b>: ${countWords2}[~${totalWordsTyped}]; `;
+  result.innerHTML += `<b>Accuracy</b>: ${accuracy}%<br><br>`;
+  output.innerHTML = `${diffOutput}`;
   
 });
 
@@ -129,9 +145,9 @@ diffChar.addEventListener("click", function() {
   var charCount1 = text1Value.length;
   var charCount2 = text2Value.length; 
     
-  output.innerHTML = `<b>Total Characters </b>: ${charCount1} `;
-  output.innerHTML += `<b>Characters typed</b>: ${charCount2}; <br><br>`;
-  output.innerHTML += `${diffOutput}`;
+  result.innerHTML = `<b>Total Characters </b>: ${charCount1} `;
+  result.innerHTML += `<b>Characters typed</b>: ${charCount2}; <br><br>`;
+  output.innerHTML = `${diffOutput}`;
 });
 
 document.getElementById('reset-btn').addEventListener('click', function() {
