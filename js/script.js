@@ -109,12 +109,13 @@ diffWord.addEventListener("click", function() {
   var charCount2 = text2Value.length; 
   var changes = Diff.diffWords(text2Value, text1Value);
   var diffOutput = Diff.convertChangesToXML(changes);
-  var countWordsResult = countWords(text1Value);
+  var countWords1 = countWords(text1Value);
+  var countWords2 = countWords(text2Value);
   var totalWordsOriginal = Math.round(charCount1 / 5);
   var totalWordsTyped = Math.round(charCount2 / 5);
 
-  output.innerHTML = `<b>Total Words</b>: ${countWordsResult} [~${totalWordsOriginal}]; `;
-  output.innerHTML += `<b>Words typed</b>: ${totalWordsTyped}; `;
+  output.innerHTML = `<b>Total Words</b>: ${countWords1}[~${totalWordsOriginal}]; `;
+  output.innerHTML += `<b>Words typed</b>: ${countWords2}[~${totalWordsTyped}]; <br><br>`;
   output.innerHTML += `${diffOutput}`;
   
 });
@@ -129,7 +130,7 @@ diffChar.addEventListener("click", function() {
   var charCount2 = text2Value.length; 
     
   output.innerHTML = `<b>Total Characters </b>: ${charCount1} `;
-  output.innerHTML += `<b>Characters typed</b>: ${charCount2}; `;
+  output.innerHTML += `<b>Characters typed</b>: ${charCount2}; <br><br>`;
   output.innerHTML += `${diffOutput}`;
 });
 
