@@ -69,15 +69,16 @@ function countWords(text) {
 }
 
 function calculateAccuracy(originalText, typedText) {
+  const changes = Diff.diffChars(originalText, typedText);
   let correctCount = 0;
-  const minLength = Math.min(originalText.length, typedText.length);
-  
-  for (let i = 0; i < minLength; i++) {
-    if (originalText[i] === typedText[i]) {
-      correctCount++;
+  let totalCount = 0;
+  changes.forEach(change => {
+    if (change.added || change.removed) {
+      return;
     }
-  }
-
+    correctCount += change.value.length;
+    totalCount += change.value.length;
+  });
   const accuracy = (correctCount / originalText.length) * 100;
   return accuracy.toFixed(2);
 }
@@ -143,10 +144,12 @@ diffChar.addEventListener("click", function() {
   var changes = Diff.diffChars(text2Value, text1Value);
   var diffOutput = Diff.convertChangesToXML(changes);
   var charCount1 = text1Value.length;
-  var charCount2 = text2Value.length; 
+  var charCount2 = text2Value.length;
+  var accuracy = calculateAccuracy(text1Value, text2Value);
     
   result.innerHTML = `<b>Total Characters </b>: ${charCount1} `;
-  result.innerHTML += `<b>Characters typed</b>: ${charCount2}; <br><br>`;
+  result.innerHTML += `<b>Characters typed</b>: ${charCount2}; `;
+  result.innerHTML += `<b>Accuracy</b>: ${accuracy}%<br><br>`;
   output.innerHTML = `${diffOutput}`;
 });
 
