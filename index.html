@@ -12,7 +12,6 @@
 <body>
   <div class="container">
     <h1>Typing Practice</h1>
-    <!-- <p>Enter two texts in the boxes below and click the buttons to see the comparison</p> -->
     <div>
       <button id="fullscreen-btn" >
         <img src="svg/FL.svg" alt="Full Screen Icon" width="20" height="20">
@@ -34,7 +33,7 @@
         </div>
       </label>
       <input type="file" id="file-input" accept=".txt" style="display:none;">
-      <textarea id="text1" placeholder="Enter original text here"></textarea>
+      <textarea id="text1" placeholder="Enter original text here" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
     </div>
     
     <div id="myModal" class="modal">
@@ -50,8 +49,8 @@
       <button id="diff-char">Compare characters</button>
       <button id="reset-btn">Reset</button>
     </div>
-    <div id="output" style="display: none;"></div>
     <div id="calculator" style="display: none;">
+      <div id="result"></div>
       <button id="cal">Calculate Errors</button>
       <div id="calculation-container" style="display: none;">
         <label for="full-mistakes">Full Mistakes:</label>
@@ -64,6 +63,7 @@
         <div id="calculation-output"></div>
       </div>
     </div>
+    <div id="output" style="display: none;"></div>
   </div>
   <script src="js/jsdiff-v520.js"></script>
   <script src="js/script.js"></script>
