@@ -1,7 +1,6 @@
 var text1 = document.getElementById("text1");
 var text2 = document.getElementById("text2");
 var diffWord = document.getElementById("diff-word");
-var diffChar = document.getElementById("diff-char");
 var output = document.getElementById("output");
 var heading = document.querySelector('.container h1');
 var resultsHeading = document.createElement('h2');
@@ -135,22 +134,6 @@ diffWord.addEventListener("click", function() {
   result.innerHTML += `<b>Accuracy</b>: ${accuracy}%<br><br>`;
   output.innerHTML = `${diffOutput}`;
   
-});
-
-diffChar.addEventListener("click", function() {
-  rearrangeLayout();
-  var text1Value = text1.value;
-  var text2Value = text2.value;
-  var changes = Diff.diffChars(text2Value, text1Value);
-  var diffOutput = Diff.convertChangesToXML(changes);
-  var charCount1 = text1Value.length;
-  var charCount2 = text2Value.length;
-  var accuracy = calculateAccuracy(text1Value, text2Value);
-    
-  result.innerHTML = `<b>Total Characters </b>: ${charCount1} `;
-  result.innerHTML += `<b>Characters typed</b>: ${charCount2}; `;
-  result.innerHTML += `<b>Accuracy</b>: ${accuracy}%<br><br>`;
-  output.innerHTML = `${diffOutput}`;
 });
 
 document.getElementById('reset-btn').addEventListener('click', function() {
