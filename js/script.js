@@ -3,7 +3,6 @@ var text2 = document.getElementById("text2");
 var diffWord = document.getElementById("diff-word");
 var output = document.getElementById("output");
 var heading = document.querySelector('.container h1');
-var resultsHeading = document.createElement('h2');
 //var infoLine = document.querySelector('.container p');
 var container = document.querySelector('.container');
 var calButton = document.getElementById('cal');
@@ -16,15 +15,10 @@ var calculateButton = document.getElementById('calculate-errors');
 let timerInterval;
 let timeLeft = 600;
 let timerStarted = false;
+let increaseTime = false;
 let currentFontSize = 16;
 const ttBtn = document.getElementById('tt-btn');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
-
-
-resultsHeading.textContent = 'Results';
-resultsHeading.style.display = 'none';
-container.insertBefore(resultsHeading, container.firstChild);
-
 
 fullscreenBtn.addEventListener('click', () => {
     if (document.fullscreenElement) {
@@ -42,17 +36,33 @@ function startTimer() {
 }
 
 function updateTimer() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    const timerDisplay = document.getElementById('timer');
-    timerDisplay.textContent = `Time left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-    if (timeLeft === 0) {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const timerDisplay = document.getElementById('label');
+  timerDisplay.textContent = `${time} ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  
+  if (timeLeft === 0){ 
+      if (confirm("Time's up! Do you want to submit?") ) {
         clearInterval(timerInterval);
-        alert("Time's up!");
+        diffWord.click();
+      } else{
+        increaseTime = true;
+        timeLeft=1;
+      }
+  } 
+  else {
+    if(!increaseTime){
+    timeLeft--;
+      if (timeLeft<2){
+        timerDisplay.style.color='red';
+      }
     } else {
-        timeLeft--;
+      timeLeft++;
+      time = "Time Elapsed: ";
+      timerDisplay.style.color='pink';
+      timerDisplay.style.fontWeight ='semi-bold';
     }
+  }
 }
 
 function parseTimeToSeconds(timeString) {
@@ -83,9 +93,8 @@ function calculateAccuracy(originalText, typedText) {
 }
 
 function rearrangeLayout() {
-  resultsHeading.style.display = 'block';
   output.style.display = 'block';
-  heading.style.display = 'none';
+  heading.textContent = 'Results';
   //infoLine.style.display = 'none';
   text1.style.width = 'calc(100%)';
   text1.style.height = '14rem';
@@ -177,8 +186,7 @@ ttBtn.addEventListener('click', () => {
     if (currentFontSize > 22) {
         currentFontSize = 16;
     }
-
-    document.getElementById('text1').style.fontSize = currentFontSize + 'px';
+ document.getElementById('text1').style.fontSize = currentFontSize + 'px';
     document.getElementById('text2').style.fontSize = currentFontSize + 'px';
 });
 
