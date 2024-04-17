@@ -70,12 +70,10 @@ h1 {
 
 #edit-btn {
   position: absolute;
-  top: 0;
+  top: 5px;
   left: 100px;
-  margin-top: 5px;
   border: none;
   background-color: transparent;
-  padding: 0;
 }
 
 
