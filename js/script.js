@@ -14,6 +14,7 @@ var totalWordsInput = document.getElementById('total-words');
 var calculateButton = document.getElementById('calculate-errors');
 let timerInterval;
 let timeLeft = 600;
+var time = "Time left: "
 let timerStarted = false;
 let increaseTime = false;
 let currentFontSize = 16;
@@ -95,18 +96,16 @@ function calculateAccuracy(originalText, typedText) {
 function rearrangeLayout() {
   output.style.display = 'block';
   heading.textContent = 'Results';
-  //infoLine.style.display = 'none';
   text1.style.width = 'calc(100%)';
-  text1.style.height = '14rem';
+  text1.style.height = '12rem';
   //text1.style.marginRight = '2rem';
   text2.style.width = 'calc(100%)';
-  text2.style.height = '14rem';
+  text2.style.height = '12rem';
   //text2.style.marginLeft = '2rem';
   document.getElementById('calculator').style.display = 'block';
   calButton.style.display = 'block';
   document.getElementById('calculation-container').style.display = 'none';
-  document.getElementById('text-selector').style.display = 'none';
-  document.querySelector('.text-container label').style.display = 'none';
+  document.getElementById('label').style.display = 'none';
 }
 
 function loadTextFile(fileUrl) {
