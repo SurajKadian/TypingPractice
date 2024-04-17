@@ -54,13 +54,13 @@ function updateTimer() {
   else {
     if(!increaseTime){
     timeLeft--;
-      if (timeLeft<2){
+      if (timeLeft<240){
         timerDisplay.style.color='red';
       }
     } else {
       timeLeft++;
       time = "Time Elapsed: ";
-      timerDisplay.style.color='pink';
+      timerDisplay.style.color='light green';
       timerDisplay.style.fontWeight ='semi-bold';
     }
   }
@@ -220,7 +220,7 @@ document.getElementById('text-selector').addEventListener('change', function() {
   }
 });
 
-document.getElementById('timer').addEventListener('click', function() {
+document.getElementById('label').addEventListener('click', function() {
     const modal = document.getElementById('myModal');
     modal.style.display = 'block';
 });
