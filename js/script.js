@@ -220,7 +220,7 @@ document.getElementById('text-selector').addEventListener('change', function() {
   }
 });
 
-document.getElementById('label').addEventListener('click', function() {
+document.getElementById('timer').addEventListener('click', function() {
     const modal = document.getElementById('myModal');
     modal.style.display = 'block';
 });
