@@ -14,48 +14,49 @@
   <div class="container">
     <h1>Typing Practice</h1>
     <div>
-      <button id="fullscreen-btn" >
+      <button id="fullscreen-btn">
         <img src="svg/FL.svg" alt="Full Screen Icon" width="20" height="20">
       </button>
-      <button id="tt-btn" >
-  <img src="svg/tt.svg" alt="Font Size Icon" width="20" height="20">
+      <button id="tt-btn">
+        <img src="svg/tt.svg" alt="Font Size Icon" width="20" height="20">
       </button>
     </div>
-<div class="text-container">
-      <label for="text1" title="Click to update timer" class="text-label" id="text-label">
-        <div class="label" id="label">
-         <div class="timer" id="timer"> <span class="timer">Time: 10:00</span>
-          <button id="edit-btn" >
-  <img src="svg/edit.svg" alt="Edit Timer Icon" width="12" height="12">
-          </button>
-           </div>
+
+    
+    <div class="text-container">
+      <label for="text1" title="Click to update timer" class="label" id="label">
+        <div class="l-label" id="l-label">
+          <div class="timer" id="timer">
+            <span class="timer">Time: 10:00</span>
+            <button class="timer" id="edit-btn">
+              <img src="svg/edit.svg" alt="Edit Timer Icon" width="10" height="10">
+            </button>
+          </div>
           <div class="r-label" id="r-label">
             <img src="svg/up.svg" alt="Upload Icon" id="file-upload-icon">
-            <select id="text-selector" >
+            <select id="text-selector">
               <option value="">Choose a text...</option>
             </select>
           </div>
         </div>
       </label>
+      
       <input type="file" id="file-input" accept=".txt" style="display:none;">
-      <textarea id="text1" placeholder="Enter original text here" spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
+      <textarea id="text1" placeholder="Enter original text here">Enter original text here</textarea>
     </div>
+
+
     
-    <div id="myModal" class="modal">
-    <div class="modal-content">
-      <h4>Enter new time here</h4>
-        <input type="text" id="timer-input" class="timer-input" placeholder="mm:ss">
-        <button id="apply-btn">Apply</button>
-    </div>
-    </div>
-    <textarea id="text2" placeholder="Start typing here..." spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
+    <textarea id="text2" placeholder="Start typing here..." spellcheck="false" autocorrect="off"
+      autocapitalize="off">enter changed text here</textarea>
     <div class="buttons">
-      <button id="diff-word">Submit</button>
-      <button id="reset-btn">Reset</button>
+      <button id="submit">Submit</button>
+      <button id="reset">Reset</button>
     </div>
+
     <div id="calculator" style="display: none;">
       <div id="result"></div>
-      <button id="cal">Calculate Errors</button>
+      <button id="cal1">Calculate Errors</button>
       <div id="calculation-container" style="display: none;">
         <label for="full-mistakes">Full Mistakes:</label>
         <input type="number" id="full-mistakes" min="0" max="999">
@@ -63,14 +64,14 @@
         <input type="number" id="half-mistakes" min="0" max="999">
         <label for="total-words">Total Words:</label>
         <input type="number" id="total-words" min="0" max="999">
-        <button id="calculate-errors">Calculate Errors</button>
+        <button id="cal2">Calculate Errors</button>
         <div id="calculation-output"></div>
       </div>
     </div>
+
     <div id="output" style="display: none;"></div>
   </div>
-  <script src="js/jsdiff-v520.js"></script>
   <script src="js/script.js"></script>
 </body>
-  
+
 </html>
