@@ -69,6 +69,7 @@ function parseTimeToSeconds(timeString) {
 }
 
 function rearrangeLayout() {
+  document.body.style.height = '200vh';
   result.style.display = 'block';
   output.style.display = 'block';
   output2.style.display = 'block';
@@ -135,8 +136,8 @@ ttBtn.addEventListener('click', () => {
   if (currentFontSize > 22) {
     currentFontSize = 16;
   }
-  document.getElementById('text1').style.fontSize = currentFontSize + 'px';
-  document.getElementById('text2').style.fontSize = currentFontSize + 'px';
+  text1.style.fontSize = currentFontSize + 'px';
+  text2.style.fontSize = currentFontSize + 'px';
 });
 
 document.getElementById('file-upload-icon').addEventListener('click', function() {
@@ -149,7 +150,7 @@ document.getElementById('file-input').addEventListener('change', function(event)
     const reader = new FileReader();
     reader.onload = function(e) {
       const text = e.target.result;
-      document.getElementById('text1').value = text;
+      text1.value = text;
     };
     reader.readAsText(file);
   }
@@ -161,10 +162,10 @@ document.getElementById('text-selector').addEventListener('change', function() {
   if (selectedFileUrl) {
     loadTextFile(selectedFileUrl)
       .then(content => {
-        document.getElementById('text1').value = content;
+        text1.value = content;
       });
   } else {
-    document.getElementById('text1').value = '';
+    text1.value = '';
   }
 });
 
@@ -180,37 +181,15 @@ for (var fileName in providedTexts) {
 }
 
 
-/*function calculateAccuracy(originalText, typedText) {
-  const changes = Diff.diffChars(originalText, typedText);
-  let correctCount = 0;
-  let totalCount = 0;
-
-  changes.forEach(change => {
-    if (change.added || change.removed) {
-      // Ignore added or removed characters
-      return;
-    }
-
-    // Count correct characters
-    correctCount += change.value.length;
-
-    // Count total characters
-    totalCount += change.value.length;
-  });
-
-  const accuracy = (correctCount / originalText.length) * 100;
-  return accuracy.toFixed(2); // Round the result to two decimal places
-}*/
-
-
-
 timer.addEventListener('click', function() {
+if (!submitButtonClicked) {
   const newTime = window.prompt('Enter new time (mm:ss):', '10:00');
   if (newTime !== null) {
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = `Time: ${newTime}`;
     timeLeft = parseTimeToSeconds(newTime);
   }
+}
 });
 
 function errorsPercentage(fullMistakes, halfMistakes, totalWords) {
@@ -354,7 +333,7 @@ submit.addEventListener('click', function() {
   var orange = orangeWords.length;
   var blue = blueWords.length;
   var fm = red + orange;
-  var error = errorsPercentage(fm, blue, wordCount1)
+  var error = errorsPercentage(fm, blue, wordCount1);
 
   //result
   result.innerHTML = '<b>Total Words: </b>' + wordCount1 + '[~' + charWord1 + ']' + ' words; <br>';
@@ -365,26 +344,26 @@ submit.addEventListener('click', function() {
 
 
   // output
-  output.innerHTML = /*'<b>Output</b> {Full mistakes are in red & orange, half mistakes are in blue}<br><br>' +*/ L.output + '<br>';
+  output.innerHTML = L.output + '<br>';
 
   //output2
-  output2.innerHTML = '<b>Missing Words:</b><ol>';
-  redWords.forEach(function(word, index) {
-    output2.innerHTML += (index + 1) + '. <span class="red">' + word + '</span><br>';
+  output2.innerHTML = '<b>Half Mistakes:</b><ol>';
+  blueWords.forEach(function(word, index) {
+    output2.innerHTML += (index + 1) + '.<span class="blue">' + word + '</span>; ';
   });
-  output2.innerHTML += '</ol>';
- 
+  output2.innerHTML += '</ol><br>';
+
+  output2.innerHTML += '<b>Missing Words:</b><ol>';
+  redWords.forEach(function(word, index) {
+    output2.innerHTML += (index + 1) + '.<span class="red">' + word + '</span>; ';
+  });
+  output2.innerHTML += '</ol><br>';
+
   output2.innerHTML += '<b>Extra Words:</b><ol>';
   orangeWords.forEach(function(word, index) {
-    output2.innerHTML += (index + 1) + '. <span class="red orange">' + word + '</span><br>';
+    output2.innerHTML += (index + 1) + '.<span class="red orange">' + word + '</span>; ';
   });
-  output2.innerHTML += '</ol>';
-
-  output2.innerHTML += '<b>Half Mistakes:</b><ol>';
-  blueWords.forEach(function(word, index) {
-    output2.innerHTML += (index + 1) + '. <span class="blue">' + word + '</span><br>';
-  });
-  output2.innerHTML += '</ol>';
+  output2.innerHTML += '</ol><br>';
 });
 
 
