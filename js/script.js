@@ -1,26 +1,22 @@
 var text1 = document.getElementById("text1");
 var text2 = document.getElementById("text2");
 var submit = document.getElementById("submit");
+var result =  document.getElementById('result');
 var output = document.getElementById("output");
+var output2 = document.getElementById('detailedOutput');
 var heading = document.querySelector('.container h1');
 //var resultsHeading = document.createElement('h2');
 var container = document.querySelector('.container');
-var cal1 = document.getElementById('cal1');
-var calculationContainer = document.getElementById('calculation-container');
-var calculationOutput = document.getElementById('calculation-output');
-var fullMistakesInput = document.getElementById('full-mistakes');
-var halfMistakesInput = document.getElementById('half-mistakes');
-var totalWordsInput = document.getElementById('total-words');
-var cal2 = document.getElementById('cal2');
+const timer = document.getElementById('timer');
 let timerInterval;
 let timeLeft = 3;
 var time = "Time left: ";
 let timerStarted = false;
+let submitButtonClicked = false;
 let increaseTime = false;
 let currentFontSize = 16;
 const ttBtn = document.getElementById('tt-btn');
 const fullscreenBtn = document.getElementById('fullscreen-btn');
-
 
 fullscreenBtn.addEventListener('click', () => {
   if (document.fullscreenElement) {
@@ -31,7 +27,7 @@ fullscreenBtn.addEventListener('click', () => {
 });
 
 function startTimer() {
-  if (!timerStarted) {
+  if (!timerStarted && !submitButtonClicked) {
     timerInterval = setInterval(updateTimer, 1000);
     timerStarted = true;
   }
@@ -72,24 +68,15 @@ function parseTimeToSeconds(timeString) {
   return minutes * 60 + seconds;
 }
 
-function countWords(text) {
-  var words = text.split(/\s+/);
-  return words.filter(function(word) {
-    return word.length > 0;
-  }).length;
-}
-
 function rearrangeLayout() {
+  result.style.display = 'block';
   output.style.display = 'block';
+  output2.style.display = 'block';
   heading.textContent = 'Results';
-  text1.style.width = '100%';
   text1.style.height = '12rem';
-  text2.style.width = 'calc(100%)';
   text2.style.height = '12rem';
-  document.getElementById('calculator').style.display = 'block';
-  cal1.style.display = 'none';
-  document.getElementById('calculation-container').style.display = 'none';
   clearInterval(timerInterval);
+  
   //document.getElementById('r-label').style.display = 'none';
 }
 
@@ -106,26 +93,7 @@ function loadTextFile(fileUrl) {
     });
 }
 
-document.getElementById('text2').addEventListener('input', startTimer);
-
-/*submit.addEventListener("click", function() {
-  rearrangeLayout();
-  var texta1 = document.getElementById("text1").value.trim().split(/\s+/);
-  var texta2 = document.getElementById("text2").value.trim().split(/\s+/);
-  var text1Value = text1.value;
-  var text2Value = text2.value;
-  var charCount1 = text1Value.length;
-  var charCount2 = text2Value.length;
-  var totalWordsOriginal = Math.round(charCount1 / 5);
-  var totalWordsTyped = Math.round(charCount2 / 5);
-  //var accuracy = calculateAccuracy(text1Value, text2Value);
-  var resultlcs = lcs(texta1, texta2);
-
-  document.getElementById("result").innerHTML = `<b>Total Words</b>: ${totalWordsOriginal}; `;
-  document.getElementById("result").innerHTML += `<b>Words typed</b>: ${totalWordsTyped}; `;
-  //result.innerHTML += `<b>Accuracy</b>: ${accuracy}%<br><br>`;
-  output.innerHTML = resultlcs;
-});*/
+text2.addEventListener('input', startTimer);
 
 document.getElementById('reset').addEventListener('click', function() {
   location.reload();
@@ -185,23 +153,6 @@ for (var fileName in providedTexts) {
   document.getElementById('text-selector').appendChild(option);
 }
 
-cal1.addEventListener('click', function() {
-  calculationContainer.style.display = 'block';
-  cal1.style.display = 'none';
-});
-
-cal2.addEventListener('click', function() {
-  var fullMistakes = parseInt(fullMistakesInput.value);
-  var halfMistakes = parseInt(halfMistakesInput.value);
-  var totalWords = parseInt(totalWordsInput.value);
-
-  if (!isNaN(fullMistakes) && !isNaN(halfMistakes) && !isNaN(totalWords)) {
-    var errorsPercentage = ((fullMistakes + (halfMistakes / 2)) / totalWords) * 100;
-    calculationOutput.textContent = 'Errors Percentage: ' + errorsPercentage.toFixed(2) + '%';
-  } else {
-    calculationOutput.textContent = 'Invalid input!';
-  }
-});
 
 /*function calculateAccuracy(originalText, typedText) {
   const changes = Diff.diffChars(originalText, typedText);
@@ -225,8 +176,8 @@ cal2.addEventListener('click', function() {
   return accuracy.toFixed(2); // Round the result to two decimal places
 }*/
 
-//const timerBtn = document.querySelectorAll('.timer');
-const timer = document.getElementById('timer');
+
+
 timer.addEventListener('click', function() {
   const newTime = window.prompt('Enter new time (mm:ss):', '10:00');
   if (newTime !== null) {
@@ -236,8 +187,14 @@ timer.addEventListener('click', function() {
   }
 });
 
-
-
+function errorsPercentage(fullMistakes, halfMistakes, totalWords) {
+  if (!isNaN(fullMistakes) && !isNaN(halfMistakes) && !isNaN(totalWords)) {
+    var errorsPercentage = ((fullMistakes + (halfMistakes / 2)) / totalWords) * 100;
+    return errorsPercentage.toFixed(2);
+  } else {
+    return 'Could not calculate Error Percentage!';
+  }
+}
 
 function ld(word1, word2) {
   var m = word1.length;
@@ -271,150 +228,137 @@ function ld(word1, word2) {
 
 // new function, it also includes the cases when one of the text input is longer than the other 
 function lcs(text1, text2) {
-    var m = text1.length;
-    var n = text2.length;
-    var output = '';
-    var redWords = [];
-    var orangeWords = [];
-    var blueWords =[];
+  var m = text1.length;
+  var n = text2.length;
+  var output = '';
+  var redWords = [];
+  var orangeWords = [];
+  var blueWords = [];
 
-    // Initialize a 2D array to store the results of subproblems
-    var dp = [];
-    for (var i = 0; i <= m; i++) {
-        dp[i] = [];
-        for (var j = 0; j <= n; j++) {
-            dp[i][j] = -1;
-        }
+  // Initialize a 2D array to store the results of subproblems
+  var dp = [];
+  for (var i = 0; i <= m; i++) {
+    dp[i] = [];
+    for (var j = 0; j <= n; j++) {
+      dp[i][j] = -1;
+    }
+  }
+
+  // Function to find the length of LCS using dynamic programming
+  function lcsLength(i, j) {
+    if (i === 0 || j === 0) {
+      return 0;
     }
 
-    // Function to find the length of LCS using dynamic programming
-    function lcsLength(i, j) {
-        if (i === 0 || j === 0) {
-            return 0;
-        }
-        
-        // If the result is already computed, return it
-        if (dp[i][j] !== -1) {
-            return dp[i][j];
-        }
-
-        if (text1[i - 1] === text2[j - 1]) {
-            dp[i][j] = 1 + lcsLength(i - 1, j - 1);
-        } else if (ld(text1[i - 1], text2[j - 1]).similarityPercentage >= 60
-            && ld(text1[i - 1], text2[j - 1]).similarityPercentage < 100) {
-            dp[i][j] = 0.5 + lcsLength(i - 1, j - 1);
-        } else {
-            dp[i][j] = Math.max(lcsLength(i - 1, j), lcsLength(i, j - 1));
-        }
-
-        return dp[i][j];
+    // If the result is already computed, return it
+    if (dp[i][j] !== -1) {
+      return dp[i][j];
     }
 
-    // Function to construct the LCS
-    function constructLCS(i, j) {
-        if (i === 0 && j === 0) {
-            return '';
-        } else if (i === 0) {
-          redWords.push(text2[j - 1]);
-            return '<span style="color:red">' + text2[j - 1] + '</span> ' + constructLCS(i, j - 1);
-        } else if (j === 0) {
-          orangeWords.push(text1[i - 1]);
-            return '<span style="color:orange">' + text1[i - 1] + '</span> ' + constructLCS(i - 1, j);
-        } else if (text1[i - 1] === text2[j - 1]) {
-            return constructLCS(i - 1, j - 1)
-                + '<span style="color:green">' + text1[i - 1] + '</span> ';
-        } else if (ld(text1[i - 1], text2[j - 1]).similarityPercentage >= 60
-            && ld(text1[i - 1], text2[j - 1]).similarityPercentage < 100) {
-          blueWords.push(text1[i - 1]);
-            return constructLCS(i - 1, j - 1)
-                + '<span style="color:blue">' + text1[i - 1]
-                + '</span> {' + text2[j - 1] + '} ';
-        } else {
-            if (lcsLength(i - 1, j) >= lcsLength(i, j - 1)) {
-              orangeWords.push(text1[i - 1]);
-                return constructLCS(i - 1, j)
-                    + '<span style="color:orange">' + text1[i - 1] + '</span> ';
-            } else {
-              redWords.push(text2[j - 1]);
-                return constructLCS(i, j - 1)
-                    + '<span style="color:red">' + text2[j - 1] + '</span> ';
-            }
-        }
+    if (text1[i - 1] === text2[j - 1]) {
+      dp[i][j] = 1 + lcsLength(i - 1, j - 1);
+    } else if (ld(text1[i - 1], text2[j - 1]).similarityPercentage >= 60
+      && ld(text1[i - 1], text2[j - 1]).similarityPercentage < 100) {
+      dp[i][j] = 0.5 + lcsLength(i - 1, j - 1);
+    } else {
+      dp[i][j] = Math.max(lcsLength(i - 1, j), lcsLength(i, j - 1));
     }
 
-    output = constructLCS(m, n);
+    return dp[i][j];
+  }
+
+  // Function to construct the LCS
+  function constructLCS(i, j) {
+    if (i === 0 && j === 0) {
+      return '';
+    } else if (i === 0) {
+      redWords.push(text2[j - 1]);
+      return '<span class="red">' + text2[j - 1] + '</span> ' + constructLCS(i, j - 1);
+    } else if (j === 0) {
+      orangeWords.push(text1[i - 1]);
+      return '<span class="red orange">' + text1[i - 1] + '</span> ' + constructLCS(i - 1, j);
+    } else if (text1[i - 1] === text2[j - 1]) {
+      return constructLCS(i - 1, j - 1)
+        + '<span>' + text1[i - 1] + '</span> ';
+    } else if (ld(text1[i - 1], text2[j - 1]).similarityPercentage >= 60
+      && ld(text1[i - 1], text2[j - 1]).similarityPercentage < 100) {
+      blueWords.push(text1[i - 1]);
+      return constructLCS(i - 1, j - 1)
+        + '<span class="blue">' + text1[i - 1]
+        + '<span class="green">{'+text2[j - 1] + '}</span></span> ';
+    } else {
+      if (lcsLength(i - 1, j) >= lcsLength(i, j - 1)) {
+        orangeWords.push(text1[i - 1]);
+        return constructLCS(i - 1, j)
+          + '<span class="red orange">' + text1[i - 1] + '</span> ';
+      } else {
+        redWords.push(text2[j - 1]);
+        return constructLCS(i, j - 1)
+          + '<span class="red">' + text2[j - 1] + '</span> ';
+      }
+    }
+  }
+
+  output = constructLCS(m, n);
 
   return {
-      output: output,
-      redWords: redWords,
-      orangeWords: orangeWords,
-      blueWords: blueWords
+    output: output,
+    redWords: redWords,
+    orangeWords: orangeWords,
+    blueWords: blueWords
   };
 }
 
 submit.addEventListener('click', function() {
-    rearrangeLayout();
-    var text1 = document.getElementById('text1').value.trim().split(/\s+/);
-    var text2 = document.getElementById('text2').value.trim().split(/\s+/);
-    var wordCount1 = text1.length;
-    var wordCount2 = text2.length;
-    var charCount1 = text1.join(' ').length;
-    var charCount2 = text2.join(' ').length;
+  rearrangeLayout();
+  submitButtonClicked= true;
+  var word1 = text1.value.trim().split(/\s+/);
+  var word2 = text2.value.trim().split(/\s+/);
+  var wordCount1 = word1.length;
+  var wordCount2 = word2.length;
+  var charCount1 = text1.value.length;
+  var charCount2 = text2.value.length;
   var charWord1 = Math.round(charCount1 / 5);
   var charWord2 = Math.round(charCount2 / 5);
-    var output = document.getElementById('output');
-    var result = document.getElementById('result');
-    var L = lcs(text2, text1);
+  var L = lcs(word2, word1);
   var redWords = L.redWords.slice().reverse();
-    var orangeWords = L.orangeWords.slice().reverse();
-    var blueWords = L.blueWords.slice().reverse();
+  var orangeWords = L.orangeWords.slice().reverse();
+  var blueWords = L.blueWords.slice().reverse();
   var red = redWords.length;
-var orange = orangeWords.length;
+  var orange = orangeWords.length;
   var blue = blueWords.length;
   var fm = red + orange;
-  var error = errorsPercentage(fm, blue,wordCount1)
-  
-
+  var error = errorsPercentage(fm, blue, wordCount1)
 
   //result
-      result.innerHTML = '<b>Total Words: </b>' + wordCount1 + '[~'+charWord1+']'+' words; <br>';
-result.innerHTML += '<b>Words typed: </b>' + wordCount2 + '[~'+charWord2+']'+' words; <br>';
-result.innerHTML += '<b>Full Mistakes : </b>' + fm +'<br>';
-  result.innerHTML += '<b>Half Mistakes : </b>' + blue +'<br>';
-  result.innerHTML += '<b>Error Percentage: </b>' + error +'% <br>';
-  
-  
+  result.innerHTML = '<b>Total Words: </b>' + wordCount1 + '[~' + charWord1 + ']' + ' words; <br>';
+  result.innerHTML += '<b>Words typed: </b>' + wordCount2 + '[~' + charWord2 + ']' + ' words; <br>';
+  result.innerHTML += '<b>Full Mistakes : </b>' + fm + '; <br>';
+  result.innerHTML += '<b>Half Mistakes : </b>' + blue + '; <br>';
+  result.innerHTML += '<b>Error Percentage: </b>' + error + '%; <br>';
+
+
   // output
- output.innerHTML = '<b>Output</b> {Full mistakes are in red & orange, half mistakes are in blue}<br><br>' + L.output +'<br><br>';
+  output.innerHTML = /*'<b>Output</b> {Full mistakes are in red & orange, half mistakes are in blue}<br><br>' +*/ L.output + '<br>';
 
-output.innerHTML += '<b>Missing Words:</b><ol>';
-redWords.forEach(function(word, index) {
-    output.innerHTML += (index + 1) + '. ' + word + '<br>';
-});
-output.innerHTML += '</ol>';
+  //output2
+  output2.innerHTML = '<b>Missing Words:</b><ol>';
+  redWords.forEach(function(word, index) {
+    output2.innerHTML += (index + 1) + '. <span class="red">' + word + '</span><br>';
+  });
+  output2.innerHTML += '</ol>';
+ 
+  output2.innerHTML += '<b>Extra Words:</b><ol>';
+  orangeWords.forEach(function(word, index) {
+    output2.innerHTML += (index + 1) + '. <span class="red orange">' + word + '</span><br>';
+  });
+  output2.innerHTML += '</ol>';
 
-output.innerHTML += '<b>Extra Words:</b><ol>';
-orangeWords.forEach(function(word, index) {
-    output.innerHTML += (index + 1) + '. ' + word + '<br>';
-});
-output.innerHTML += '</ol>';
-
-output.innerHTML += '<b>Half Mistakes:</b><ol>';
-blueWords.forEach(function(word, index) {
-    output.innerHTML += (index + 1) + '. ' + word + '<br>';
-});
-output.innerHTML += '</ol>';
-
-
-  
-  
+  output2.innerHTML += '<b>Half Mistakes:</b><ol>';
+  blueWords.forEach(function(word, index) {
+    output2.innerHTML += (index + 1) + '. <span class="blue">' + word + '</span><br>';
+  });
+  output2.innerHTML += '</ol>';
 });
 
-function errorsPercentage(fullMistakes, halfMistakes, totalWords) {
-  if (!isNaN(fullMistakes) && !isNaN(halfMistakes) && !isNaN(totalWords)) {
-    var errorsPercentage = ((fullMistakes + (halfMistakes / 2)) / totalWords) * 100;
-    return errorsPercentage.toFixed(2);
-  } else {
-    return 'Invalid input!';
-  }
-}
+
