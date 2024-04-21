@@ -2,22 +2,26 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Platypi:ital,wght@0,300..800;1,300..800&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
-ins {
-  background-color: #B9F6CA;
-  border-radius: 4px;
-  color: #1B5E20;
-  font-weight: 500;
-  text-decoration: none;
-  
-}
-
-
-del {
-  background-color: #FFCDD2;
+.red {
+  background-color: #FBE8E7;
   border-radius: 4px;
   color: #B71C1C;
-  text-decoration: line-through;
+  text-decoration: none;
+}
 
+.orange {
+  text-decoration: line-through;
+}
+
+.blue {
+  background-color:/* #E8F1F5*/ #CCF2F4;
+  border-radius: 4px;
+  color: #004A7C;
+  text-decoration: none;
+}
+
+.green {
+  color: #285430;
 }
 
 * {
@@ -38,14 +42,14 @@ body {
   display: flex;
   align-items: center-top;
   justify-content: space-around;
-  height: 100vh;
+  height: 200vh;
   margin: 0;
   margin-top: 1rem;
-  margin-bottom: 36rem;
+  /*margin-bottom: 4rem;*/
 }
 
 .container {
-  max-width: 800rem;
+  /*max-width: 800rem;*/
   width: calc(100% - 1.4rem);
   text-align: center;
 }
@@ -55,22 +59,23 @@ h1 {
   letter-spacing: 0.6px;
 }
 
-#fullscreen-btn {
+.icons{
   position: absolute;
-  top: 12px;
-  right: 12px;
   background-color: transparent;
   border: none;
+  top: 0;
+  right: 0;
   padding: 0;
 }
 
+#fullscreen-btn {
+  top: 12px;
+  right: 12px;
+}
+
 #tt-btn {
-  position: absolute;
   top: 12px;
   right: 42px;
-  background-color: transparent;
-  border: none;
-  padding: 0;
 }
 
 #edit-btn {
@@ -84,7 +89,7 @@ h1 {
 
 textarea {
   width: 100%;
-  height: 18rem;
+  height: 8rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 10px;
@@ -140,22 +145,21 @@ textarea:focus {
   max-width: 160px;
 }
 
-#output {
+.output {
   width: 100%;
-  max-width: 100%;
-  height: 26rem;
+  max-height: 24rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
   background-color: #fff;
   padding: 10px;
   margin-top: 20px;
   text-align: left;
   font-size: 16px;
   font-family: 'Open Sans';
-  letter-spacing:0.4px;
+  letter-spacing: 0.4px;
   overflow: auto;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 .text-container {
@@ -163,14 +167,23 @@ textarea:focus {
   font-family: 'Google Sans', sans-serif;
 }
 
-.l-label {
-  display: flex;
-  margin-left: auto;
-  justify-content: space-between;
+.text-container label {
+  position: sticky;
+  top: 0;
+  margin: 0;
+  display: block;
+  text-align: left;
+  font-size: 18px;
 }
 
 .timer {
   display: flex;
+}
+
+.l-label {
+  display: flex;
+  margin-left: auto;
+  justify-content: space-between;
 }
 
 .r-label {
@@ -183,58 +196,7 @@ textarea:focus {
   border-radius: 6px;
   border: ridge 1px #ddd;
   background-color: #eee;
-  
 }
 
-.text-container label {
-  position: sticky;
-  top:0;
-  margin: 0;
-  padding-top: 4px;
-  display: block;
-  text-align: left;
-  font-size: 18px;
-}
 
-#calculator {
-  margin-top: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  font-family: 'Open Sans', Arial, sans-serif;
-  text-align: left;
-}
 
-#calculation-container {
-  display: none;
-  text-align: center;
-}
-
-#calculation-container label {
-  display: inline-block;
-  width: 120px;
-  text-align: right;
-}
-
-#calculation-container input[type="number"] {
-  width: 50px;
-  padding: 2px;
-  margin-right: 40px;
-  text-align: centre;
-}
-
-#cal2 {
-  display: block;
-  margin-top: 10px;
-}
-
-ol.custom-ol {
-  list-style-type: upper-roman;
-    list-style: none;
-    padding: 0;
-  type:1;
-  color: red;
-  
-}
