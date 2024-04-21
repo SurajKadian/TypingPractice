@@ -9,7 +9,7 @@ var heading = document.querySelector('.container h1');
 var container = document.querySelector('.container');
 const timer = document.getElementById('timer');
 let timerInterval;
-let timeLeft = 3;
+let timeLeft = 600;
 var time = "Time left: ";
 let timerStarted = false;
 let submitButtonClicked = false;
@@ -51,7 +51,7 @@ function updateTimer() {
   else {
     if (!increaseTime) {
       timeLeft--;
-      if (timeLeft < 2) {
+      if (timeLeft < 240) {
         timer.style.color = 'red';
       }
     } else {
@@ -100,8 +100,34 @@ document.getElementById('reset').addEventListener('click', function() {
 });
 
 var providedTexts = {
-  '1': 'text/CGL58.txt',
+    '1': 'text/CGL58.txt',
   '2': 'text/CGL61.txt',
+  '3': 'text/CGL62.txt',
+  '4': 'text/CGL64.txt',
+  '5': 'text/CGL66.txt',
+  '6': 'text/CHSL109.txt',
+  '7': 'text/CHSL25.txt',
+  '8': 'text/CHSL26.txt',
+  '9': 'text/CHSL27.txt',
+  '10': 'text/CHSL28.txt',
+  '11': 'text/CHSL30.txt',
+  '12': 'text/CHSL43.txt',
+  '13': 'text/CHSL44.txt',
+  '14': 'text/CHSL45.txt',
+  '15': 'text/CHSL46.txt',
+  '16': 'text/CHSL47.txt',
+  '17': 'text/CHSL48.txt',
+  '18': 'text/CHSL50.txt',
+  '19': 'text/CHSL52.txt',
+  '20': 'text/CHSL55.txt',
+  '21': 'text/CHSL56.txt',
+  '22': 'text/CHSL58.txt',
+  '23': 'text/CHSL60.txt',
+  '24': 'text/CHSL62.txt',
+  '25': 'text/CHSL7PY.txt',
+  '26': 'text/CHSL8PY.txt',
+  '27': 'text/CapitalisationPractice.txt',
+  '28': 'text/SpellingPractice.txt'
 };
 
 ttBtn.addEventListener('click', () => {
