@@ -287,7 +287,8 @@ function lcs(text1, text2) {
         + '<span>' + text1[i - 1] + '</span> ';
     } else if (ld(text1[i - 1], text2[j - 1]).similarityPercentage >= 60
       && ld(text1[i - 1], text2[j - 1]).similarityPercentage < 100) {
-      blueWords.push(text1[i - 1]);
+            blueWords.push('<span class="blue">' + text1[i - 1]
+        + '<span class="green">{' + text2[j - 1] + '}</span></span>');
       return constructLCS(i - 1, j - 1)
         + '<span class="blue">' + text1[i - 1]
         + '<span class="green">{'+text2[j - 1] + '}</span></span> ';
@@ -349,7 +350,7 @@ submit.addEventListener('click', function() {
   //output2
   output2.innerHTML = '<b>Half Mistakes:</b><ol>';
   blueWords.forEach(function(word, index) {
-    output2.innerHTML += (index + 1) + '.<span class="blue">' + word + '</span>; ';
+    output2.innerHTML += (index + 1) + '.' + word + '; ';
   });
   output2.innerHTML += '</ol><br>';
 
