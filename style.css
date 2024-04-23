@@ -78,6 +78,15 @@ h1 {
   right: 42px;
 }
 
+#about-btn {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  top: 12px;
+  left: 12px;
+  padding: 0;
+}
+
 #edit-btn {
   position: absolute;
   top:0;
