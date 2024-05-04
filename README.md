@@ -1,6 +1,8 @@
 # Typing Practice
 ## Features 
-Minimal and straight forward interface with effective error calculation based on [SSC SCRIPT EVALUATION](https://ssc.gov.in/for-candidates/script-evaluation) including full mistakes and half mistakes.
+- Minimal and straight forward interface with effective error calculation based on [SSC SCRIPT EVALUATION](https://ssc.gov.in/for-candidates/script-evaluation) including full mistakes and half mistakes.
+
+- [Similar layout](https://www3.digialm.com//OnlineAssessment/index.html?164@@M510)
 
 ## How to use?
 - Easiest way: Visit [GitHub pages' website](https://surajkadian.github.io/TypingPractice/) and use.
