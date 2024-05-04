@@ -4,71 +4,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="svg/Icon.svg">
+  <title>Typing Test</title>
   <link rel="stylesheet" href="style.css">
-  <title>@SurajKadian</title>
-  <meta name="theme-color" content="rgba(201,234,252)">
+  <link rel="icon" type="image/svg+xml" href="img/icon.svg">
 </head>
 
 <body>
-  <div class="container">
-    <h1>Typing Practice</h1>
-    <div>
-      <button id="fullscreen-btn" class="icons">
-        <img src="svg/FL.svg" alt="Full Screen Icon" width="20" height="20">
-      </button>
-      <button id="tt-btn" class="icons">
-        <img src="svg/tt.svg" alt="Font Size Icon" width="20" height="20">
-      </button>
-      <a href="https://github.com/SurajKadian" id="about-link">
-        <button id="about-btn">
-         <img src="svg/about.svg" alt="About Icon" width="20" height="20">
-        </button>
-      </a>
-    </div>
 
-
-    <div class="text-container">
-
-      <label for="text1" title="Click to update timer" class="label" id="label">
-
-        <div class="l-label" id="l-label">
-          <div class="timer" id="timer">
-            <span class="timer">Time: 10:00</span>
-            <button id="edit-btn">
-              <img src="svg/edit.svg" alt="Edit Timer Icon" width="10" height="10">
-            </button>
-          </div>
-
-
-          <div class="r-label" id="r-label">
-            <img src="svg/up.svg" alt="Upload Icon" id="file-upload-icon">
-            <select id="text-selector">
-              <option value="">Choose a text...</option>
-            </select>
-          </div>
-        </div>
-      </label>
-
-      <input type="file" id="file-input" accept=".txt" style="display:none;">
-      <textarea id="text1" placeholder="Enter original text here" spellcheck="false" autocorrect="off"
-      autocapitalize="off"></textarea>
-    </div>
-
-
-
-    <textarea id="text2" placeholder="Start typing here..." spellcheck="false" autocorrect="off"
-      autocapitalize="off"></textarea>
-    <div class="buttons">
-      <button id="submit">Submit</button>
-      <button id="reset">Reset</button>
-    </div>
-
-    <div id="result" class="output" style="display: none;"></div>
-    <div id="output" class="output" style="display: none;"></div>
-    <div id="detailedOutput" class="output" style="display: none;"></div>
+  <div id="top-bar" class="top-bar">
+    <h1>Typing Test</h1>
+    <div class="timer-div"><span id="timer" class="timer">Time: 10:00</span></div>
+    <button id="menu-btn" alt="Font Size">
+      <img src="img/menu.svg" width="28" height="28">
+    </button>
   </div>
 
+  <div class="text-container" id="text-container">
+    <textarea id="text1" class="textarea" placeholder="Enter original text here" spellcheck="false" autocorrect="off"
+      autocapitalize="off" readonly></textarea>
+    <textarea id="text2" class="textarea" placeholder="Start typing here..." spellcheck="false" autocorrect="off"
+      autocapitalize="off"></textarea>
+  </div>
+
+  <div class="side-panel" id="side-panel">
+
+    <div class="side-header">
+      <a href="https://github.com/SurajKadian" target="_blank">
+        <img src="img/pp.png" alt="Profile Picture" class="profile-picture"></a>
+      <span class="username">Suraj Kadian</span>
+    </div>
+
+    <div class="side-content">
+      <p class="label">These options may not be available in the actual test:</p>
+      <div class="cards">
+        <div class="icons top">
+        </div>
+        <button id="fullscreen-btn" class="icons" alt="Full Screen Button">
+          <img src="img/FL.svg" width="14" height="14">Full Screen
+        </button>
+        <button id="pause-btn" class="icons" alt="Pause Button">
+          <img src="img/pause.svg" width="14" height="14"><span>Pause Timer</span>
+        </button>
+        <button id="tt-btn" class="icons" alt="Font Size">
+          <img src="img/tt.svg" width="14" height="14">Font Size
+        </button>
+        <button id="edit-time" class="icons" alt="Edit Time">
+          <img src="img/edit.svg" width="14" height="14">Edit Timer 
+          <!--<input type="text" id="edit-time" name="edit-time"
+            value="10:30">-->
+        </button>
+        <div id="select-text" class="icons" alt="Select Text">
+          <img src="img/text.svg" width="14" height="14">Select Text:
+          <select id="text-selector" name="text-selector">
+            <option value="">Choose a text...</option>
+          </select>
+        </div>
+        <button id="up-btn" class="icons" alt="Upload Text File">
+          <img src="img/up.svg" width="14" height="14">Upload Text File
+          <input type="file" id="file-input" accept=".txt" style="display: none;">
+        </button>
+        <div class="icons bottom">
+        </div>
+      </div>
+    </div>
+
+    <div class="side-footer">
+      <button id="submit">Submit</button>
+      <button id="restart">Restart</button>
+    </div>
+
+  </div>
+
+<div id="output-div" class="output-div" style="display: none;">
+  <div class="output-textarea"><textarea id="o-text1" class="output"></textarea>
+  <textarea id="o-text2" class="output"></textarea></div>
+  <div id="result" class="output" ></div>
+  <div id="output" class="output"></div>
+  <div id="detailedOutput" class="output"></div>
+  </div>
   <script src="js/script.js"></script>
 </body>
 
