@@ -77,19 +77,20 @@ h1 {
     border-radius: 4px;
     padding: 8px;
     color: var(--text-color);
-    margin-left: 36%;
+    margin-left: 56vw;
     font-weight: normal;
     font-size: 16px;
 }
 
 
-#menu-btn{
+.menu-btn{
     padding: 6px;
-    display: flex;
-    align-items: center;
-    background-color: transparent;
+    background-color:transparent;
     border: none;
     border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin-left: auto;
 }
 
 .text-container {
@@ -179,7 +180,6 @@ textarea::-webkit-scrollbar-track {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 20px;
-    text-align: left;
     color: var(--text-color);
     overflow-y: auto;
     box-sizing: border-box;
@@ -194,7 +194,7 @@ textarea::-webkit-scrollbar-track {
     display: grid;
     grid-gap: 2px;
     align-items: center;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 button {
@@ -230,8 +230,9 @@ button:active {
     border-radius: 2px 2px 40px 40px;
 }
 
-.icons img {
+.svg {
     margin-right: 6px;
+    background-color: transparent;
 }
 
 .icons input[type="text"],
@@ -313,6 +314,17 @@ button:active {
         display: flex;
         width: 32%;
     }
+    .text-container{
+        left:4%;
+        top: auto;
+    }
+    .textarea{
+        width: 56vw;
+        height: 28vh;
+    }
+    .timer-div{
+        margin-left: 42vw;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -321,14 +333,42 @@ button:active {
         width: 60%;
         margin-bottom: 6%;
     }
+    .text-container{
+        left:auto;
+        top: 8vh;
+    }
     .textarea{
-        width: 72vw;
+        width: 88vw;
+        height: 36vh;
     }
 
     #menu-btn{
         display: flex;
     }
     .timer-div{
-        margin-right: 10px;
+        margin-left: auto;
     }
+}
+
+
+.faq{
+    display: none;
+    padding: 4vh;
+    background-color: #f0f0f0;
+    border: none;
+    z-index: 2;
+}
+
+.question{
+    display: flex;
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+    font-family: var(--font-family2);
+    letter-spacing: 0.4px;
+    line-height: 1.6;
+}
+.answer{
+    background-color: red;
+    border-radius: 20px;
 }

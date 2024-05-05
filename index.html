@@ -4,18 +4,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Typing Test</title>
+  <title>Online Typing Test</title>
+  <meta name="theme-color" content="495464">
+  <meta name="description"
+    content="Minimalist free typing practice website for SSC typing skill test or any other government exam's typing skill test, with layout similar to that of SSC">
+  <meta name="keywords"
+    content="typing test, typing speed, typing accuracy, online typing test, typing practice, SSC typing,SSC exam, SSC layout, Government exam, skill test, steno">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/svg+xml" href="img/icon.svg">
-     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8YMBKEQY6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8YMBKEQY6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-Z8YMBKEQY6');
-</script>
+    gtag('config', 'G-Z8YMBKEQY6');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Suraj Kadian",
+    "url": "https://www.surajkadian.github.io/typing-practice/",
+    "logo": "https://www.surajkadian.github.io/typing-practice/img/icon.png",
+    "sameAs": [
+      "https://www.t.me/surajkadian/",
+      "https://github.com/SurajKadian"
+    ]
+  }
+  </script>
+
 </head>
 
 <body>
@@ -23,8 +42,8 @@
   <div id="top-bar" class="top-bar">
     <h1>Typing Test</h1>
     <div class="timer-div"><span id="timer" class="timer">Time: 10:00</span></div>
-    <button id="menu-btn" alt="Font Size">
-      <img src="img/menu.svg" width="28" height="28">
+    <button id="menu-btn" class="menu-btn" alt="Menu Button">
+      <img src="img/menu.svg" class="svg" width="28" height="28">
     </button>
   </div>
 
@@ -49,28 +68,31 @@
         <div class="icons top">
         </div>
         <button id="fullscreen-btn" class="icons" alt="Full Screen Button">
-          <img src="img/FL.svg" width="14" height="14">Full Screen
+          <img src="img/FL.svg" class="svg" width="14" height="14">Full Screen
         </button>
         <button id="pause-btn" class="icons" alt="Pause Button">
-          <img src="img/pause.svg" width="14" height="14"><span>Pause Timer</span>
+          <img src="img/pause.svg" class="svg" width="14" height="14"><span>Pause Timer</span>
         </button>
         <button id="tt-btn" class="icons" alt="Font Size">
-          <img src="img/tt.svg" width="14" height="14">Font Size
+          <img src="img/tt.svg" class="svg" width="14" height="14">Font Size
         </button>
         <button id="edit-time" class="icons" alt="Edit Time">
-          <img src="img/edit.svg" width="14" height="14">Edit Timer 
+          <img src="img/edit.svg" class="svg" width="14" height="14">Edit Timer
           <!--<input type="text" id="edit-time" name="edit-time"
-            value="10:30">-->
+            value="10:00">-->
         </button>
         <div id="select-text" class="icons" alt="Select Text">
-          <img src="img/text.svg" width="14" height="14">Select Text:
+          <img src="img/text.svg" class="svg" width="14" height="14">Select Text:
           <select id="text-selector" name="text-selector">
             <option value="">Choose a text...</option>
           </select>
         </div>
         <button id="up-btn" class="icons" alt="Upload Text File">
-          <img src="img/up.svg" width="14" height="14">Upload Text File
+          <img src="img/up.svg" class="svg" width="14" height="14">Upload Text File
           <input type="file" id="file-input" accept=".txt" style="display: none;">
+        </button>
+        <button id="faq-btn" class="icons" alt="Frequently Asked Questions">
+          <img src="img/faq.svg" class="svg" width="14" height="14">FAQs
         </button>
         <div class="icons bottom">
         </div>
@@ -83,13 +105,32 @@
     </div>
 
   </div>
-
-<div id="output-div" class="output-div" style="display: none;">
-  <div class="output-textarea"><textarea id="o-text1" class="output"></textarea>
-  <textarea id="o-text2" class="output"></textarea></div>
-  <div id="result" class="output" ></div>
-  <div id="output" class="output"></div>
-  <div id="detailedOutput" class="output"></div>
+  <div class="side-content faq">
+    <div class="cards">
+      <button class="menu-btn" alt="Menu Button">
+        <img src="img/close.svg" width="28" height="28">
+      </button>
+      <div class="icons top">
+      </div>
+      <div id="faq-1" class="icons" alt="FAQ-1">
+        <img src="img/faq.svg" class="svg" width="20" height="20">
+        <span class='question'>First Question</span><br>
+        <span class='question answer'> <br>answer</span>
+        <button id="faq1-btn" class="menu-btn">
+          <img src="img/expand.svg" class="svg" width="24" height="24">
+        </button>
+      </div>
+      <div class="icons bottom">
+      </div>
+    </div>
+  </div>
+  <div id="output-div" class="output-div" style="display: none;">
+    <div class="output-textarea"><textarea id="o-text1" class="output"></textarea>
+      <textarea id="o-text2" class="output"></textarea>
+    </div>
+    <div id="result" class="output"></div>
+    <div id="output" class="output"></div>
+    <div id="detailedOutput" class="output"></div>
   </div>
   <script src="js/script.js"></script>
 </body>
