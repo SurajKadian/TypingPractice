@@ -8,8 +8,10 @@ var output = document.getElementById("output");
 var output2 = document.getElementById('detailedOutput');
 var heading = document.querySelector('.top-bar h1');
 var sidePanel = document.getElementById('side-panel');
+var footerBtn = document.getElementById('footer-btn');
 const timer = document.getElementById('timer');
 let timerInterval;
+let timeTotal = 600;
 let timeLeft = 600;
 var time = "Time left: ";
 let timerStarted = false;
@@ -19,8 +21,9 @@ let currentFontSize = 16;
 let remainingTime = 0;
 let hm = 70;
 
-document.getElementById('menu-btn').addEventListener('click', function() {
+document.getElementById('menu-btn').addEventListener('click', function () {
     sidePanel.style.display = (sidePanel.style.display === 'flex') ? 'none' : 'flex';
+    footerBtn.style.display = (sidePanel.style.display === 'flex') ? 'none' : 'block';
 });
 
 function startTimer() {
@@ -39,6 +42,7 @@ document.getElementById('edit-time').addEventListener('click', function () {
             const timerDisplay = document.getElementById('timer');
             timerDisplay.textContent = `Time: ${newTime}`;
             timeLeft = parseTimeToSeconds(newTime);
+            timeTotal = parseTimeToSeconds(newTime);
         }
     }
 });
@@ -86,8 +90,7 @@ document.getElementById('pause-btn').addEventListener('click', function () {
         this.querySelector('img').setAttribute('src', 'img/resume.svg');
         spanText.textContent = 'Resume Timer';
     } else {
-        timerInterval = setInterval(updateTimer, 1000);
-        timerStarted = true;
+        startTimer();
         spanText.textContent = 'Pause Timer';
         this.querySelector('img').setAttribute('src', "img/pause.svg");
     }
@@ -106,6 +109,7 @@ function loadTextFile(fileUrl) {
         });
 }
 
+document.getElementById('restart2').addEventListener('click', function () { restart.click() });
 restart.addEventListener('click', function () {
     location.reload();
 });
@@ -212,6 +216,7 @@ for (var fileName in providedTexts) {
 
 function rearrangeLayout() {
     outputDiv.style.display = 'block';
+    footerBtn.style.display = 'none';
     heading.textContent = 'Results';
     clearInterval(timerInterval);
     document.getElementById('menu-btn').style.display = 'block';
@@ -338,6 +343,7 @@ function lcs(text1, text2) {
     };
 }
 
+document.getElementById('submit2').addEventListener('click', function () { submit.click() });
 submit.addEventListener('click', function () {
     var word1 = text1.value.trim().split(/\s+/);
     var word2 = text2.value.trim().split(/\s+/);
@@ -347,7 +353,7 @@ submit.addEventListener('click', function () {
     var charCount2 = text2.value.length;
     var charWord1 = Math.round(charCount1 / 5);
     var charWord2 = Math.round(charCount2 / 5);
-    if (charWord1 <= 1000 && charWord2 <= 1000) {
+    if (charWord1 <= 1500 && charWord2 <= 1500) {
         rearrangeLayout();
         submitButtonClicked = true;
         var L = lcs(word2, word1);
@@ -360,16 +366,26 @@ submit.addEventListener('click', function () {
         var fm = red + orange;
         var error = errorsPercentage(fm, blue, wordCount1);
 
+        var timeTaken = timeTotal - timeLeft;
+        if (wordCount2 > 1 || charCount2 > 1) {
+            var wpm = Math.round(wordCount2 / (timeTaken / 60));
+            var wpm2 = Math.round(charCount2 / (timeTaken / 60));
+        }else{
+            wpm = wpm2 = "NA"
+        }
+
         //textarea
         document.getElementById('o-text1').value = text1.value;
         document.getElementById('o-text2').value = text2.value;
 
         //result
-        result.innerHTML = '<b>Total Words: </b>' + wordCount1 + '[~' + charWord1 + ']' + ' words; <br>';
-        result.innerHTML += '<b>Words typed: </b>' + wordCount2 + '[~' + charWord2 + ']' + ' words; <br>';
+        result.innerHTML = '<b>Total Words: </b>' + wordCount1 + '[~' + charWord1  + '] words; <br>';
+        result.innerHTML += '<b>Words typed: </b>' + wordCount2 + '[~' + charWord2 +'] words; <br>';
         result.innerHTML += '<b>Full Mistakes : </b>' + fm + '; <br>';
         result.innerHTML += '<b>Half Mistakes : </b>' + blue + '; <br>';
         result.innerHTML += '<b>Error Percentage: </b>' + error + '%; <br>';
+        result.innerHTML += '<b>Total time taken: </b>' + Math.floor(timeTaken / 60) + ':' + (timeTaken) % 60 + '; <br>';
+        result.innerHTML += '<b>Typing speed : </b>' + wpm + '[~' + wpm2 + '] ; <br>';
 
 
         // output
@@ -394,7 +410,7 @@ submit.addEventListener('click', function () {
         });
         output2.innerHTML += '</ol><br>';
     } else {
-        window.alert("Text should not be more than 1000 words");
+        window.alert("Text should not be more than 1500 words");
     }
 
 });

@@ -83,9 +83,9 @@ h1 {
 }
 
 
-.menu-btn{
+.menu-btn {
     padding: 6px;
-    background-color:transparent;
+    background-color: transparent;
     border: none;
     border-radius: 50%;
     height: 40px;
@@ -204,6 +204,7 @@ button {
 button:hover {
     filter: brightness(90%);
 }
+
 button:active {
     border-radius: 10px;
     transform: scale(0.96);
@@ -253,7 +254,6 @@ button:active {
 }
 
 .side-footer button {
-    border: none;
     height: 30px;
     width: 100px;
     border: none;
@@ -267,6 +267,11 @@ button:active {
     color: #fff;
 }
 
+.footer {
+    display: none;
+    margin-top: auto;
+}
+
 .output-div {
     display: flex;
     flex-direction: column;
@@ -275,7 +280,7 @@ button:active {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     width: 100vw;
-    height: 240vh;
+    height: fit-content;
     margin-top: 8vh;
     box-sizing: border-box;
 }
@@ -310,48 +315,58 @@ button:active {
 }
 
 @media screen and (max-width: 1100px) {
-    .side-panel{
+    .side-panel {
         display: flex;
         width: 32%;
     }
-    .text-container{
-        left:4%;
+
+    .text-container {
+        left: 4%;
         top: auto;
     }
-    .textarea{
+
+    .textarea {
         width: 56vw;
         height: 28vh;
     }
-    .timer-div{
+
+    .timer-div {
         margin-left: 42vw;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .side-panel{
+    .side-panel {
         display: none;
         width: 60%;
         margin-bottom: 6%;
     }
-    .text-container{
-        left:auto;
+
+    .text-container {
+        left: auto;
         top: 8vh;
     }
-    .textarea{
+
+    .textarea {
         width: 88vw;
         height: 36vh;
     }
 
-    #menu-btn{
+    #menu-btn {
         display: flex;
     }
-    .timer-div{
+
+    .timer-div {
         margin-left: auto;
+    }
+
+    .footer {
+        display: block;
     }
 }
 
 
-.faq{
+.faq {
     display: none;
     padding: 4vh;
     background-color: #f0f0f0;
@@ -359,7 +374,7 @@ button:active {
     z-index: 2;
 }
 
-.question{
+.question {
     display: flex;
     padding: 10px;
     text-align: left;
@@ -368,7 +383,24 @@ button:active {
     letter-spacing: 0.4px;
     line-height: 1.6;
 }
-.answer{
+
+.answer {
     background-color: red;
     border-radius: 20px;
+}
+
+.label {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+button:hover .label {
+    display: block;
 }
