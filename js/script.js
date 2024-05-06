@@ -23,7 +23,7 @@ let hm = 70;
 
 document.getElementById('menu-btn').addEventListener('click', function () {
     sidePanel.style.display = (sidePanel.style.display === 'flex') ? 'none' : 'flex';
-    footerBtn.style.display = (sidePanel.style.display === 'flex') ? 'none' : 'block';
+    if (!submitButtonClicked) {footerBtn.style.display = (sidePanel.style.display === 'flex') ? 'none' : 'block';}
 });
 
 function startTimer() {
