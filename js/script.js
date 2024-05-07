@@ -367,11 +367,11 @@ submit.addEventListener('click', function () {
         var error = errorsPercentage(fm, blue, wordCount1);
 
         var timeTaken = timeTotal - timeLeft;
-        if (wordCount2 > 1 || charCount2 > 1) {
+        if (wordCount2 > 1 && charCount2 > 1) {
             var wpm = Math.round(wordCount2 / (timeTaken / 60));
-            var wpm2 = Math.round(charWord2 / (timeTaken / 60));
+            var cpm = Math.round(charWord2 / (timeTaken / 60));
         }else{
-            wpm = wpm2 = "NA"
+            wpm = cpm = "N/A"
         }
 
         //textarea
@@ -379,13 +379,13 @@ submit.addEventListener('click', function () {
         document.getElementById('o-text2').value = text2.value;
 
         //result
-        result.innerHTML = '<b>Total Words: </b>' + wordCount1 + 'words [' + charWord1  + '*5 characters]; <br>';
-        result.innerHTML += '<b>Words typed: </b>' + wordCount2 + 'words [' + charWord2 +'*5 characters]; <br>';
+        result.innerHTML = '<b>Total Words: </b>' + wordCount1 + ' words, (' + charWord1  + '*5)=' + charCount1 + ' characters; <br>';
+        result.innerHTML += '<b>Words typed: </b>' + wordCount2 + ' words, (' + charWord2 +'*5)=' + charCount2 + ' characters ; <br>';
         result.innerHTML += '<b>Full Mistakes : </b>' + fm + '; <br>';
         result.innerHTML += '<b>Half Mistakes : </b>' + blue + '; <br>';
         result.innerHTML += '<b>Error Percentage: </b>' + error + '%; <br>';
         result.innerHTML += '<b>Total time taken: </b>' + Math.floor(timeTaken / 60) + ':' + (timeTaken) % 60 + '; <br>';
-        result.innerHTML += '<b>Typing speed : </b>' + wpm + 'WPM [' + wpm2 + '*5 CPM] ; <br>';
+        result.innerHTML += '<b>Typing speed : </b>' + wpm + ' WPM (' + cpm + '*5)=' + cpm*5 +' CPM] ; <br>';
 
 
         // output
