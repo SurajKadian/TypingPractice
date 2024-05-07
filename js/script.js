@@ -369,7 +369,7 @@ submit.addEventListener('click', function () {
         var timeTaken = timeTotal - timeLeft;
         if (wordCount2 > 1 || charCount2 > 1) {
             var wpm = Math.round(wordCount2 / (timeTaken / 60));
-            var wpm2 = Math.round(charCount2 / (timeTaken / 60));
+            var wpm2 = Math.round(charWord2 / (timeTaken / 60));
         }else{
             wpm = wpm2 = "NA"
         }
@@ -379,13 +379,13 @@ submit.addEventListener('click', function () {
         document.getElementById('o-text2').value = text2.value;
 
         //result
-        result.innerHTML = '<b>Total Words: </b>' + wordCount1 + '[~' + charWord1  + '] words; <br>';
-        result.innerHTML += '<b>Words typed: </b>' + wordCount2 + '[~' + charWord2 +'] words; <br>';
+        result.innerHTML = '<b>Total Words: </b>' + wordCount1 + 'words [' + charWord1  + '*5 characters]; <br>';
+        result.innerHTML += '<b>Words typed: </b>' + wordCount2 + 'words [' + charWord2 +'*5 characters]; <br>';
         result.innerHTML += '<b>Full Mistakes : </b>' + fm + '; <br>';
         result.innerHTML += '<b>Half Mistakes : </b>' + blue + '; <br>';
         result.innerHTML += '<b>Error Percentage: </b>' + error + '%; <br>';
         result.innerHTML += '<b>Total time taken: </b>' + Math.floor(timeTaken / 60) + ':' + (timeTaken) % 60 + '; <br>';
-        result.innerHTML += '<b>Typing speed : </b>' + wpm + '[~' + wpm2 + '] ; <br>';
+        result.innerHTML += '<b>Typing speed : </b>' + wpm + 'WPM [' + wpm2 + '*5 CPM] ; <br>';
 
 
         // output
