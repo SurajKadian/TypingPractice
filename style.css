@@ -68,7 +68,7 @@ body {
     background-color: var(--background-color);
     font-family: var(--font-family);
     display: flex;
-    align-items: center;
+    align-items: center-top;
     justify-content: space-around;
     height: 100vh;
     width: 100vw;
@@ -311,7 +311,7 @@ button:active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     background-color: var(--background-color);
     width: 100vw;
     height: fit-content;
@@ -351,7 +351,7 @@ button:active {
     }
 
     .text-container {
-        left: 4%;
+        left: 2%;
         top: auto;
     }
 
@@ -371,8 +371,12 @@ button:active {
         width: 80%;
     }
 
+    .text-container {
+        top: 8vh;
+    }
+
     .textarea {
-        width: 88vw;
+        width: 90vw;
         height: 36vh;
     }
 
