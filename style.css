@@ -2,14 +2,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Platypi:ital,wght@0,300..800;1,300..800&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 :root {
-    --primary-color: #495464;
-    --secondary-color: #5f6a8e;
+    --font-family: 'Google Sans', Arial, sans-serif;
+    --font-family2: 'Open Sans', Arial, sans-serif;
+}
+
+.palette1 {
     --background-color: #E8E8E8;
     --background-color2: #F4F4F2;
     --accent-color: #495464;
-    --text-color: #08090a;
-    --font-family: 'Google Sans', Arial, sans-serif;
-    --font-family2: 'Open Sans', Arial, sans-serif;
+    --text-color: #000;
+    --text-background: #fff;
+}
+
+.palette2 {
+    --background-color: #DBE2EF;
+    --background-color2: #F9F7F7;
+    --accent-color: #112D4E;
+    --text-color: #000;
+    --text-background: #fff;
+}
+
+.palette3 {
+    --background-color: #FFE4E1;
+    --background-color2: #FFF0F5;
+    --accent-color: #FF69B4;
+    --text-color: #333;
+    --text-background: #fff;
+}
+
+.palette4 {
+    --background-color: #E0FFE4;
+    --background-color2: #F0FFF5;
+    --accent-color: #32CD32;
+    --text-color: #222;
+    --text-background: #fff;
 }
 
 .red {
@@ -34,11 +60,15 @@
     color: #3c803c;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--background-color);
     font-family: var(--font-family);
     display: flex;
-    align-items: center-top;
+    align-items: center;
     justify-content: space-around;
     height: 100vh;
     width: 100vw;
@@ -58,7 +88,6 @@ body {
     text-align: left;
     align-items: center;
     justify-content: space-between;
-    box-sizing: border-box;
     color: var(--accent-color);
     font-family: var(--font-family);
     font-weight: bold;
@@ -76,7 +105,7 @@ h1 {
     background-color: #fff;
     border-radius: 4px;
     padding: 8px;
-    color: var(--text-color);
+    color: var(--accent-color);
     margin-left: 56vw;
     font-weight: normal;
     font-size: 16px;
@@ -84,7 +113,7 @@ h1 {
 
 .menu-btn {
     padding: 6px;
-    background-color: transparent;
+    background-color: var(--background-color);
     border: none;
     border-radius: 50%;
     height: 40px;
@@ -148,7 +177,6 @@ textarea::-webkit-scrollbar-track {
     border-right: 1px solid #ccc;
     background-color: var(--background-color2);
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
     justify-content: space-between;
     font-family: var(--font-family);
 }
@@ -168,7 +196,7 @@ textarea::-webkit-scrollbar-track {
 }
 
 .username {
-    font-size: 18px;
+    font-size: 20px;
     color: var(--accent-color);
 }
 
@@ -177,9 +205,7 @@ textarea::-webkit-scrollbar-track {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    color: var(--text-color);
     overflow-y: auto;
-    box-sizing: border-box;
 }
 
 .text {
@@ -197,18 +223,20 @@ textarea::-webkit-scrollbar-track {
 
 button {
     cursor: pointer;
-    -webkit-tap-highlight-color: transparent; 
+    -webkit-tap-highlight-color: transparent;
     transition: background-color 0.3s;
 }
 
 button:hover {
     filter: brightness(90%);
-    background-color: #f0f0f0;
+    background-color: var(--background-color);
 }
 
 button:active {
     border-radius: 10px;
+    background-color: var(--accent-color);
     transform: scale(0.96);
+    color: white;
 }
 
 .icons {
@@ -219,7 +247,7 @@ button:active {
     border-radius: 2px;
     padding: 16px;
     font-size: 14px;
-    color: var(--text-color);
+    color: #000;
 }
 
 .top {
@@ -237,14 +265,13 @@ button:active {
     background-color: transparent;
 }
 
-.icons input[type="text"],
 .icons select {
     width: 48%;
     border: 1px solid #ccc;
     border-radius: 4px;
     cursor: pointer;
     margin-left: auto;
-    background-color: #f8f8f8;
+    background-color: var(--background-color2);
 }
 
 .side-footer {
@@ -259,7 +286,7 @@ button:active {
     width: 100px;
     border: none;
     border-radius: 4px;
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);
     font-family: var(--font-family);
     font-weight: 600;
     font-size: 16px;
@@ -276,7 +303,7 @@ button:active {
     justify-content: right;
 }
 
-.footer button{
+.footer button {
     margin-left: 20px;
 }
 
@@ -285,12 +312,10 @@ button:active {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: var(--background-color);
     width: 100vw;
     height: fit-content;
     margin-top: 8vh;
-    box-sizing: border-box;
 }
 
 .output-textarea {
@@ -298,12 +323,10 @@ button:active {
     justify-content: space-between;
     width: 100%;
     height: 16rem;
-    box-sizing: border-box;
 }
 
 .output-textarea textarea {
     width: 48%;
-    box-sizing: border-box;
 }
 
 .output {
@@ -314,7 +337,6 @@ button:active {
     padding: 10px;
     margin-top: 20px;
     overflow: auto;
-    box-sizing: border-box;
     text-align: left;
     align-items: center;
     font-size: 16px;
@@ -325,8 +347,7 @@ button:active {
 
 @media screen and (max-width: 1100px) {
     .side-panel {
-        display: flex;
-        width: 32%;
+        width: 36%;
     }
 
     .text-container {
@@ -336,7 +357,7 @@ button:active {
 
     .textarea {
         width: 56vw;
-        height: 28vh;
+        height: 32vh;
     }
 
     .timer-div {
@@ -348,21 +369,11 @@ button:active {
     .side-panel {
         display: none;
         width: 80%;
-        margin-bottom: 6%;
-    }
-
-    .text-container {
-        left: auto;
-        top: 8vh;
     }
 
     .textarea {
         width: 88vw;
         height: 36vh;
-    }
-
-    #menu-btn {
-        display: flex;
     }
 
     .timer-div {
@@ -375,7 +386,7 @@ button:active {
         justify-content: space-between;
     }
 
-    .side-footer button{
+    .side-footer button {
         height: 40px;
         width: 120px;
         font-size: 18px;
@@ -387,7 +398,7 @@ button:active {
 .faq {
     display: none;
     padding: 4vh;
-    background-color: #f0f0f0;
+    background-color: var(--background-color);
     border: none;
     z-index: 2;
 }
@@ -409,14 +420,14 @@ button:active {
 
 .label {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 50%;
     transform: translateX(-50%);
     background-color: #333;
     color: #fff;
     padding: 5px;
     border-radius: 8px;
+    font-size: 14px;
+    width: fit-content;
+    white-space: nowrap;
 }
 
 button:hover .label {

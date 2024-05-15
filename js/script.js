@@ -20,6 +20,14 @@ let increaseTime = false;
 let currentFontSize = 16;
 let remainingTime = 0;
 let hm = 70;
+const palettes = ['palette1', 'palette2', 'palette3', 'palette4'];
+let currentPaletteIndex = 0;
+
+document.getElementById('palette-btn').addEventListener('click', () => {
+    document.body.classList.remove(palettes[currentPaletteIndex]);
+    currentPaletteIndex = (currentPaletteIndex + 1) % palettes.length;
+    document.body.classList.add(palettes[currentPaletteIndex]);
+});
 
 document.getElementById('menu-btn').addEventListener('click', function () {
     sidePanel.style.display = (window.getComputedStyle(sidePanel).display === 'flex') ? 'none' : 'flex';
