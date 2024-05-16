@@ -24,6 +24,24 @@
 }
 
 .palette3 {
+    --background-color: #9DC08B;
+    --background-color2: #EDF1D6;
+    --accent-color: #064420;
+}
+
+.palette4 {
+    --background-color: #A5C9CA;
+    --background-color2: #E7F6F2;
+    --accent-color: #2C3333;
+}
+
+.palette5 {
+    --background-color: #FFE4E1;
+    --background-color2: #FFF0F5;
+    --accent-color: #3D0000;
+}
+
+.palette6 {
     --background-color: #A6B1E1;
     --background-color2: #DCD6F7;
     --accent-color: #424874;
@@ -31,24 +49,6 @@
     --text-color: #1B262C;
     --text-background: #F4EEFF;
     --border-color: #424874;
-}
-
-.palette4 {
-    --background-color: #FFE4E1;
-    --background-color2: #FFF0F5;
-    --accent-color: #3D0000;
-}
-
-.palette5 {
-    --background-color: #9DC08B;
-    --background-color2: #EDF1D6;
-    --accent-color: #064420;
-}
-
-.palette6 {
-    --background-color: #A5C9CA;
-    --background-color2: #E7F6F2;
-    --accent-color: #2C3333;
 }
 
 .palette7 {
@@ -411,11 +411,12 @@ button:active img {
 
     .text-container {
         top: 8vh;
+        left: auto;
     }
 
     .textarea {
         width: 90vw;
-        height: 36vh;
+        height: 38vh;
     }
 
     .timer-div {
@@ -426,6 +427,7 @@ button:active img {
         display: flex;
         margin-bottom: 2vh;
         justify-content: space-between;
+        background-color: black;
     }
 
     .side-footer button {

@@ -235,7 +235,6 @@ function rearrangeLayout() {
 
 function resetLayout() {
     outputDiv.style.display = 'none';
-    footerBtn.style.display = 'flex';
     heading.textContent = 'Typing Test';
     document.getElementById('text-container').style.display = 'grid';
     text2.value = '';
