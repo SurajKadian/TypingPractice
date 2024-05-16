@@ -394,10 +394,17 @@ submit.addEventListener('click', function () {
     var fm = red + orange;
     var error = errorsPercentage(fm, blue, wordCount1);
 
-    var timeTaken = timeTotal - timeLeft;
+    
+    if (!increaseTime){
+        timeTotal = timeTotal - timeLeft;
+    }
+    else{
+        timeTotal = timeTotal + timeLeft;
+    }
+
     if (wordCount2 > 1 && charCount2 > 1) {
-        var wpm = Math.round(wordCount2 / (timeTaken / 60));
-        var cpm = Math.round(charWord2 / (timeTaken / 60));
+        var wpm = Math.round(wordCount2 / (timeTotal / 60));
+        var cpm = Math.round(charWord2 / (timeTotal / 60));
     } else {
         wpm = cpm = "N/A"
     }
@@ -412,7 +419,7 @@ submit.addEventListener('click', function () {
     result.innerHTML += `<b>Full Mistakes : </b>` + fm + '; <br>';
     result.innerHTML += `<b>Half Mistakes : </b>` + blue + '; <br>';
     result.innerHTML += `<b>Error Percentage: </b>` + error + '%; <br>';
-    result.innerHTML += `<b>Total time taken: </b>` + Math.floor(timeTaken / 60) + ':' + (timeTaken) % 60 + '; <br>';
+    result.innerHTML += `<b>Total time taken: </b>` + Math.floor(timeTotal / 60) + ':' + (timeTotal) % 60 + '; <br>';
     result.innerHTML += `<b>Typing speed : </b>` + wpm + ' WPM (' + cpm + '*5)=' + cpm * 5 + ' CPM] ; <br>';
 
 
