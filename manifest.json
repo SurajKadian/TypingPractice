@@ -1,0 +1,24 @@
+{
+    "name": "SurajKadian",
+    "short_name": "Kadian",
+    "description": "Typing practice app for SSC typing skill tests or any other government exams typing skill test, with similar layout and some added functionalities",
+    "start_url": "https://surajkadian.github.io/TypingPractice/",
+    "display": "fullscreen",
+    "orientation": "landscape",
+    "splash_screen": [
+        {
+            "src": "img/logo.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ],
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+        {
+            "src": "img/logo.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}

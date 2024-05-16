@@ -11,6 +11,7 @@
   <meta name="keywords"
     content="@SurajKadian, typing test, typing speed, typing accuracy, online typing test, typing practice, SSC typing,SSC exam, SSC layout, Government exam, skill test, steno">
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/svg+xml" href="img/logo.svg">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8YMBKEQY6"></script>
@@ -121,7 +122,7 @@
         <span class='question answer'> <br>answer</span>
         <button id="faq1-btn" class="menu-btn">
           <img src="img/expand.svg" class="svg" width="24" height="24">
-            <span class="label">Label Text Here</span>
+          <span class="label">Label Text Here</span>
         </button>
       </div>
       <div class="icons bottom">
@@ -141,7 +142,14 @@
     <button id="submit2">Submit</button>
     <button id="restart2">Restart</button>
   </div>
+  <script>if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('js/service-worker.js');
+      });
+    }
+  </script>
   <script src="js/script.js"></script>
+  <script src="js/service-worker.js"></script>
 </body>
 
 </html>
