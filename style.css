@@ -2,6 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Platypi:ital,wght@0,300..800;1,300..800&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 :root {
+    --card: #fff;
+    --border-color: #ccc;
+    --text-color: #000;
+    --text-background: #fff;
+    --svg-filter: none;
     --font-family: 'Google Sans', Arial, sans-serif;
     --font-family2: 'Open Sans', Arial, sans-serif;
 }
@@ -10,32 +15,51 @@
     --background-color: #E8E8E8;
     --background-color2: #F4F4F2;
     --accent-color: #495464;
-    --text-color: #000;
-    --text-background: #fff;
 }
 
 .palette2 {
     --background-color: #DBE2EF;
     --background-color2: #F9F7F7;
     --accent-color: #112D4E;
-    --text-color: #000;
-    --text-background: #fff;
 }
 
 .palette3 {
-    --background-color: #FFE4E1;
-    --background-color2: #FFF0F5;
-    --accent-color: #FF69B4;
-    --text-color: #333;
-    --text-background: #fff;
+    --background-color: #A6B1E1;
+    --background-color2: #DCD6F7;
+    --accent-color: #424874;
+    --card: #F4EEFF;
+    --text-color: #1B262C;
+    --text-background: #F4EEFF;
+    --border-color: #424874;
 }
 
 .palette4 {
-    --background-color: #E0FFE4;
-    --background-color2: #F0FFF5;
-    --accent-color: #32CD32;
-    --text-color: #222;
-    --text-background: #fff;
+    --background-color: #FFE4E1;
+    --background-color2: #FFF0F5;
+    --accent-color: #3D0000;
+}
+
+.palette5 {
+    --background-color: #9DC08B;
+    --background-color2: #EDF1D6;
+    --accent-color: #064420;
+}
+
+.palette6 {
+    --background-color: #A5C9CA;
+    --background-color2: #E7F6F2;
+    --accent-color: #2C3333;
+}
+
+.palette7 {
+    --background-color: #222831;
+    --background-color2: #393E46;
+    --accent-color: #FFD369;
+    --text-color: #EEEEEE;
+    --text-background: #393E46;
+    --border-color: #000;
+    --card: #393E46;
+    --svg-filter: invert(1);
 }
 
 .red {
@@ -102,7 +126,7 @@ h1 {
 .timer-div {
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--card);
     border-radius: 4px;
     padding: 8px;
     color: var(--accent-color);
@@ -113,7 +137,7 @@ h1 {
 
 .menu-btn {
     padding: 6px;
-    background-color: var(--background-color);
+    background-color: var(--card);
     border: none;
     border-radius: 50%;
     height: 40px;
@@ -131,7 +155,7 @@ h1 {
 .textarea {
     width: 52vw;
     height: 24vh;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     padding: 10px;
     margin: 10px;
@@ -139,7 +163,8 @@ h1 {
     font-size: 16px;
     letter-spacing: 0.4px;
     resize: none;
-    background-color: #fff;
+    background-color: var(--text-background);
+    color: var(--text-color);
 }
 
 textarea:focus {
@@ -155,14 +180,14 @@ textarea::-webkit-scrollbar {
 }
 
 textarea::-webkit-scrollbar-thumb {
-    background-color: #ccc;
+    background-color: var(--border-color);
     border-radius: 5px;
     cursor: pointer;
 }
 
 textarea::-webkit-scrollbar-track {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    background-color: var(--text-background);
+    border: 1px solid var(--border-color);
     cursor: pointer;
 }
 
@@ -174,7 +199,7 @@ textarea::-webkit-scrollbar-track {
     padding: 10px;
     height: 100vh;
     width: 24%;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid var(--border-color);
     background-color: var(--background-color2);
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
     justify-content: space-between;
@@ -184,8 +209,10 @@ textarea::-webkit-scrollbar-track {
 .side-header {
     display: flex;
     align-items: center;
-    margin-top: 10vh;
+    margin-top: 8vh;
     padding: 10px;
+    background-color: var(--background-color);
+    border-radius: 20px;
 }
 
 .profile-picture {
@@ -206,12 +233,16 @@ textarea::-webkit-scrollbar-track {
     flex-direction: column;
     padding: 10px;
     overflow-y: auto;
+    background-color: var(--background-color);
+    border-radius: 20px;
+    margin: 10px 0 10px 0;
 }
 
 .text {
     font-style: italic;
     font-size: 14px;
-    color: #999;
+    color: var(--text-color);
+    filter: brightness(80%);
 }
 
 .cards {
@@ -228,26 +259,29 @@ button {
 }
 
 button:hover {
-    filter: brightness(90%);
-    background-color: var(--background-color);
+    background-color: var(--background-color2);
 }
 
 button:active {
     border-radius: 10px;
     background-color: var(--accent-color);
     transform: scale(0.96);
-    color: white;
+    color: var(--text-background);
+}
+
+button:active img {
+    filter: invert(1);
 }
 
 .icons {
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--card);
     border: none;
     border-radius: 2px;
     padding: 16px;
     font-size: 14px;
-    color: #000;
+    color: var(--text-color);
 }
 
 .top {
@@ -263,15 +297,18 @@ button:active {
 .svg {
     margin-right: 6px;
     background-color: transparent;
+    filter: var(--svg-filter);
 }
 
 .icons select {
     width: 48%;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
     border-radius: 4px;
     cursor: pointer;
     margin-left: auto;
     background-color: var(--background-color2);
+    padding: 2px;
 }
 
 .side-footer {
@@ -292,7 +329,7 @@ button:active {
     font-size: 16px;
     letter-spacing: 0.6px;
     text-rendering: optimizeLegibility;
-    color: #fff;
+    color: var(--card);
 }
 
 .footer {
@@ -331,9 +368,10 @@ button:active {
 
 .output {
     max-height: 24rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
-    background-color: #fff;
+    background-color: var(--text-background);
+    color: var(--text-color);
     padding: 10px;
     margin-top: 20px;
     overflow: auto;

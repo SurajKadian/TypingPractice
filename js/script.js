@@ -20,7 +20,7 @@ let increaseTime = false;
 let currentFontSize = 16;
 let remainingTime = 0;
 let hm = 70;
-const palettes = ['palette1', 'palette2', 'palette3', 'palette4'];
+const palettes = ['palette1', 'palette2', 'palette3', 'palette4','palette5','palette6','palette7'];
 let currentPaletteIndex = 0;
 
 document.getElementById('palette-btn').addEventListener('click', () => {
@@ -117,11 +117,6 @@ function loadTextFile(fileUrl) {
         });
 }
 
-document.getElementById('restart2').addEventListener('click', function () { restart.click() });
-restart.addEventListener('click', function () {
-    location.reload();
-});
-
 var providedTexts = {
     '1': 'text/CGL58.txt',
     '2': 'text/CGL61.txt',
@@ -173,15 +168,18 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+function randomText() {
     var dropdown = document.getElementById('text-selector');
     var numOptions = dropdown.options.length;
     var randomIndex = getRandomInt(0, numOptions - 1);
     dropdown.selectedIndex = randomIndex;
     var event = new Event('change');
     dropdown.dispatchEvent(event);
-});
+}
 
+document.addEventListener('DOMContentLoaded', function () {
+    randomText();
+});
 
 document.getElementById('text-selector').addEventListener('change', function () {
     var selectedFileName = this.value;
@@ -197,11 +195,14 @@ document.getElementById('text-selector').addEventListener('change', function () 
 });
 
 document.getElementById('fullscreen-btn').addEventListener('click', function () {
+    const spanText = this.querySelector('span');
     if (document.fullscreenElement) {
         document.exitFullscreen();
+        spanText.textContent = 'Full Screen';
         this.querySelector('img').setAttribute('src', "img/FL.svg");
     } else {
         document.documentElement.requestFullscreen();
+        spanText.textContent = 'Exit Full Screen';
         this.querySelector('img').setAttribute('src', "img/eFL.svg");
     }
 });
@@ -227,10 +228,26 @@ function rearrangeLayout() {
     footerBtn.style.display = 'none';
     heading.textContent = 'Results';
     clearInterval(timerInterval);
-    document.getElementById('menu-btn').style.display = 'block';
     //document.getElementById('top-bar').style.background = 'transparent';
     document.getElementById('side-panel').style.display = 'none';
     document.getElementById('text-container').style.display = 'none';
+}
+
+function resetLayout() {
+    outputDiv.style.display = 'none';
+    footerBtn.style.display = 'flex';
+    heading.textContent = 'Typing Test';
+    document.getElementById('text-container').style.display = 'grid';
+    text2.value = '';
+    clearInterval(timerInterval);
+    timeTotal = 600;
+    timeLeft = 600;
+    time = "Time left: ";
+    timerStarted = false;
+    increaseTime = false;
+    submitButtonClicked = false;
+    timer.textContent = `Time: 10:00`;
+    randomText();
 }
 
 function errorsPercentage(fullMistakes, halfMistakes, totalWords) {
@@ -351,6 +368,11 @@ function lcs(text1, text2) {
     };
 }
 
+document.getElementById('restart2').addEventListener('click', function () { restart.click() });
+restart.addEventListener('click', function () {
+    resetLayout();
+});
+
 document.getElementById('submit2').addEventListener('click', function () { submit.click() });
 submit.addEventListener('click', function () {
     var word1 = text1.value.trim().split(/\s+/);
@@ -361,65 +383,60 @@ submit.addEventListener('click', function () {
     var charCount2 = text2.value.length;
     var charWord1 = Math.round(charCount1 / 5);
     var charWord2 = Math.round(charCount2 / 5);
-    if (charWord1 <= 1500 && charWord2 <= 1500) {
-        rearrangeLayout();
-        submitButtonClicked = true;
-        var L = lcs(word2, word1);
-        var redWords = L.redWords.slice().reverse();
-        var orangeWords = L.orangeWords.slice().reverse();
-        var blueWords = L.blueWords.slice().reverse();
-        var red = redWords.length;
-        var orange = orangeWords.length;
-        var blue = blueWords.length;
-        var fm = red + orange;
-        var error = errorsPercentage(fm, blue, wordCount1);
+    rearrangeLayout();
+    submitButtonClicked = true;
+    var L = lcs(word2, word1);
+    var redWords = L.redWords.slice().reverse();
+    var orangeWords = L.orangeWords.slice().reverse();
+    var blueWords = L.blueWords.slice().reverse();
+    var red = redWords.length;
+    var orange = orangeWords.length;
+    var blue = blueWords.length;
+    var fm = red + orange;
+    var error = errorsPercentage(fm, blue, wordCount1);
 
-        var timeTaken = timeTotal - timeLeft;
-        if (wordCount2 > 1 && charCount2 > 1) {
-            var wpm = Math.round(wordCount2 / (timeTaken / 60));
-            var cpm = Math.round(charWord2 / (timeTaken / 60));
-        } else {
-            wpm = cpm = "N/A"
-        }
-
-        //textarea
-        document.getElementById('o-text1').value = text1.value;
-        document.getElementById('o-text2').value = text2.value;
-
-        //result
-        result.innerHTML = `<b>Total Words: </b>` + wordCount1 + ' words, (' + charWord1 + '*5)=' + charCount1 + ' characters; <br>';
-        result.innerHTML += `<b>Words typed: </b>` + wordCount2 + ' words, (' + charWord2 + '*5)=' + charCount2 + ' characters ; <br>';
-        result.innerHTML += `<b>Full Mistakes : </b>` + fm + '; <br>';
-        result.innerHTML += `<b>Half Mistakes : </b>` + blue + '; <br>';
-        result.innerHTML += `<b>Error Percentage: </b>` + error + '%; <br>';
-        result.innerHTML += `<b>Total time taken: </b>` + Math.floor(timeTaken / 60) + ':' + (timeTaken) % 60 + '; <br>';
-        result.innerHTML += `<b>Typing speed : </b>` + wpm + ' WPM (' + cpm + '*5)=' + cpm * 5 + ' CPM] ; <br>';
-
-
-        // output
-        output.innerHTML = L.output + '<br>';
-
-        //output2
-        output2.innerHTML = '<b>Half Mistakes:</b><ol>';
-        blueWords.forEach(function (word, index) {
-            output2.innerHTML += (index + 1) + '.' + word + '; ';
-        });
-        output2.innerHTML += '</ol><br>';
-
-        output2.innerHTML += '<b>Missing Words:</b><ol>';
-        redWords.forEach(function (word, index) {
-            output2.innerHTML += (index + 1) + '.<span class="red">' + word + '</span>; ';
-        });
-        output2.innerHTML += '</ol><br>';
-
-        output2.innerHTML += '<b>Extra Words:</b><ol>';
-        orangeWords.forEach(function (word, index) {
-            output2.innerHTML += (index + 1) + '.<span class="red orange">' + word + '</span>; ';
-        });
-        output2.innerHTML += '</ol><br>';
+    var timeTaken = timeTotal - timeLeft;
+    if (wordCount2 > 1 && charCount2 > 1) {
+        var wpm = Math.round(wordCount2 / (timeTaken / 60));
+        var cpm = Math.round(charWord2 / (timeTaken / 60));
     } else {
-        window.alert("Text should not be more than 1500 words");
+        wpm = cpm = "N/A"
     }
 
+    //textarea
+    document.getElementById('o-text1').value = text1.value;
+    document.getElementById('o-text2').value = text2.value;
+
+    //result
+    result.innerHTML = `<b>Total Words: </b>` + wordCount1 + ' words, (' + charWord1 + '*5)=' + charCount1 + ' characters; <br>';
+    result.innerHTML += `<b>Words typed: </b>` + wordCount2 + ' words, (' + charWord2 + '*5)=' + charCount2 + ' characters ; <br>';
+    result.innerHTML += `<b>Full Mistakes : </b>` + fm + '; <br>';
+    result.innerHTML += `<b>Half Mistakes : </b>` + blue + '; <br>';
+    result.innerHTML += `<b>Error Percentage: </b>` + error + '%; <br>';
+    result.innerHTML += `<b>Total time taken: </b>` + Math.floor(timeTaken / 60) + ':' + (timeTaken) % 60 + '; <br>';
+    result.innerHTML += `<b>Typing speed : </b>` + wpm + ' WPM (' + cpm + '*5)=' + cpm * 5 + ' CPM] ; <br>';
+
+
+    // output
+    output.innerHTML = L.output + '<br>';
+
+    //output2
+    output2.innerHTML = '<b>Half Mistakes:</b><ol>';
+    blueWords.forEach(function (word, index) {
+        output2.innerHTML += (index + 1) + '.' + word + '; ';
+    });
+    output2.innerHTML += '</ol><br><br>';
+
+    output2.innerHTML += '<b>Missing Words:</b><ol>';
+    redWords.forEach(function (word, index) {
+        output2.innerHTML += (index + 1) + '.<span class="red">' + word + '</span>; ';
+    });
+    output2.innerHTML += '</ol><br><br>';
+
+    output2.innerHTML += '<b>Extra Words:</b><ol>';
+    orangeWords.forEach(function (word, index) {
+        output2.innerHTML += (index + 1) + '.<span class="red orange">' + word + '</span>; ';
+    });
+    output2.innerHTML += '</ol><br><br>';
 });
 
