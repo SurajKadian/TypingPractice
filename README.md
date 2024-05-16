@@ -8,12 +8,12 @@
 
 ## 🖥 Screenshots
 
-<div align="center">
+<div align="center" >
 <div>
-<img src="img/Screenshots/5.png" width="30%" />
-  <img src="img/Screenshots/2.png" width="30%" />
-  <img src="img/Screenshots/3.png" width="30%" />
-  <img src="img/Screenshots/1.png" width="30%" />
+<img src="img/Screenshots/5.png" width="40%" />
+  <img src="img/Screenshots/2.png" width="40%" />
+  <img src="img/Screenshots/3.png" width="40%" />
+  <img src="img/Screenshots/1.png" width="40%" />
 </div>
 </div>
 
